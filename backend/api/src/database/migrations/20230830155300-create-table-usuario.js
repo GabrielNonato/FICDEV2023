@@ -23,10 +23,6 @@ module.exports = {
             nome: {
                 type: Sequelize.STRING(255),
                 allowNull: false
-            },
-            dataNascimento: {
-                type: Sequelize.DATEONLY,
-                allowNull: false
             }
         });
     },

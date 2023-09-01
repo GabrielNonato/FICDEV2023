@@ -27,16 +27,6 @@ module.exports = {
                 type: Sequelize.TIME,
                 allowNull: false
             },
-            idUsuario: {
-                type: Sequelize.INTEGER,
-                references: {
-                  model: {
-                    tableName: 'usuario',
-                  },
-                  key: 'id'
-                },
-                allowNull: false
-            },
             idSala: {
                 type: Sequelize.INTEGER,
                 references: {

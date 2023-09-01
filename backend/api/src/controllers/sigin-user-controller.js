@@ -1,39 +1,39 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { UserModel } = require('../models/user-model');
+const { UsuarioModel } = require('../models/usuario-model');
 const { TOKEN_SECRET } = require('../../environments');
 
 /**
  * Entra com o usuário e retorna um token de acesso
  */
-class SiginUserController {
+class SiginUsuarioController {
     async sigin(request, response) {
         try {
-            const { name, password } = request.body;
+            const { email, senha } = request.body;
 
             // Validar parâmetros
-            if (!name || !password) {
+            if (!email || !senha) {
                 return response.status(400).json({
-                    error: 'Nome e senha são obrigatórios!'
+                    error: 'Email e senha são obrigatórios!'
                 });
             }
 
             // Verifica se usuário existe
-            const userExists = await UserModel.findOne({
-                where: { name }
+            const usuarioExists = await UsuarioModel.findOne({
+                where: { email }
             });
 
-            if (!userExists) {
+            if (!usuarioExists) {
                 return response.status(400).json({
                     error: 'Usuario não existe!'
                 });
             }
 
             // Verifica se a senha está correta
-            const isPasswordValid = await bcrypt.compare(password, userExists.password);
+            const isSenhaValid = await bcrypt.compare(senha, usuarioExists.senha);
 
-            if (!isPasswordValid) {
+            if (!isSenhaValid) {
                 return response.status(400).json({
                     error: 'Senha incorreta!'
                 });
@@ -41,7 +41,7 @@ class SiginUserController {
 
             // Gera token de acesso
             const accessToken = jwt.sign(
-                { id: userExists.id },
+                { id: usuarioExists.id },
                 TOKEN_SECRET,
                 { expiresIn: '30m' }
             );
@@ -57,4 +57,4 @@ class SiginUserController {
     }
 }
 
-module.exports = new SiginUserController();
+module.exports = new SiginUsuarioController();

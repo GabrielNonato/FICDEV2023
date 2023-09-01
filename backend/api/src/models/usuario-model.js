@@ -6,18 +6,12 @@ class UsuarioModel extends Model {
             email: DataTypes.STRING(255),
             senha: DataTypes.STRING(255),
             nome: DataTypes.STRING(255),
-            dataNascimento: DataTypes.DATEONLY
         }, {
             tableName: 'usuario',
             modelName: 'Usuario',
             timestamps: false,
             sequelize: database
         });
-    }
-
-    
-    static associate(models) {
-        this.hasMany(models.Reserva, { foreignKey: 'idUsuario' });
     }
     
 }

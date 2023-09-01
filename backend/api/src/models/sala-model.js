@@ -16,7 +16,7 @@ class SalaModel extends Model {
 
     
     static associate(models) {
-        this.hasMany(models.Reserva, { foreignKey: 'idSala' });
+        this.hasMany(models.Reserva);
     }
     
 }

@@ -13,7 +13,6 @@ SalaModel.init(database);
 ReservaModel.init(database);
 
 // relationships
-UsuarioModel.associate(database.models)
 SalaModel.associate(database.models);
 ReservaModel.associate(database.models);
 

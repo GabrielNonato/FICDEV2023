@@ -1,34 +1,35 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const { UserModel } = require('../models/user-model');
+const { UsuarioModel } = require('../models/usuario-model');
 const { TOKEN_SECRET, SALT } = require('../../environments');
 
 /**
  * Criar usuário e retorna um token de acesso
  */
-class SignupUserController {
+class SignupUsuarioController {
     async signup(request, response) {
         try {
-            const { name, password } = request.body;
+            const { email, senha, nome } = request.body;
 
             // Validar parâmetros
-            if (!name || !password) {
+            if (!email || !senha || !nome) {
                 return response.status(400).json({
-                    error: 'Nome e senha são obrigatórios!'
+                    error: 'Todos os campos são obrigatórios!'
                 });
             }
 
             // Criptografa senha
-            const passwordHashed = await bcrypt.hash(password, SALT);
+            const senhaHashed = await bcrypt.hash(senha, SALT);
 
             // Cria usuário
-            const user = await UserModel.create({
-                name,
-                password: passwordHashed,
+            const usuario = await UsuarioModel.create({
+                email,
+                senha: senhaHashed,
+                nome,
             });
 
-            if (!user) {
+            if (!usuario) {
                 return response.status(400).json({
                     error: 'Houve um erro ao criar usuário'
                 });
@@ -36,7 +37,7 @@ class SignupUserController {
 
             // Gera e retorna access token
             const accessToken = jwt.sign(
-                { id: user.id },
+                { id: usuario.id },
                 TOKEN_SECRET,
                 { expiresIn: '30m' }
             );
@@ -52,4 +53,4 @@ class SignupUserController {
     }
 }
 
-module.exports = new SignupUserController();
+module.exports = new SignupUsuarioController();

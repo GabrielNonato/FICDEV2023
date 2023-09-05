@@ -11,10 +11,6 @@ module.exports = {
                 autoIncrement: true,
                 primaryKey: true,
             },
-            estado: {
-                type: Sequelize.BOOLEAN,
-                allowNull: false
-            },
             nomeResponsavel: {
                 type: Sequelize.STRING(255),
                 allowNull: false,
@@ -23,7 +19,11 @@ module.exports = {
                 type: Sequelize.DATEONLY,
                 allowNull: false
             },
-            horario: {
+            horarioInicio: {
+                type: Sequelize.TIME,
+                allowNull: false
+            },
+            horarioFim: {
                 type: Sequelize.TIME,
                 allowNull: false
             },

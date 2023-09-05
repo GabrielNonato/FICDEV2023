@@ -1,5 +1,5 @@
 const { HttpHelper } = require('../../utils/http-helper');
-const { SalaModel } = require('../../models/sala-model');
+const { UsuarioModel } = require('../../models/sala-model');
 
 class DeleteSalaController {
        
@@ -9,10 +9,10 @@ class DeleteSalaController {
             const { id } = request.params;
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
             const salaExists = await SalaModel.findOne({ where: { id } });
-            if (!salaExists) return httpHelper.notFound('Sala não encontrado!');
+            if (!salaExists) return httpHelper.notFound('Sala não encontrada!');
             await SalaModel.destroy({ where: { id } });
             return httpHelper.ok({
-                message: 'Sala deletado com sucesso!'
+                message: 'Sala deletada com sucesso!'
             })
         } catch (error) {
             return httpHelper.internalError(error);

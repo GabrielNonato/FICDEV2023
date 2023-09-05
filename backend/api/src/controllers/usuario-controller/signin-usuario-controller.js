@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { HttpHelper } = require("../utils/http-helper"); 
+const { HttpHelper } = require("../../utils/http-helper"); 
 
-const { UsuarioModel } = require('../models/usuario-model');
-const { TOKEN_SECRET } = require('../../environments');
+const { UsuarioModel } = require('../../models/usuario-model');
+const { TOKEN_SECRET } = require('../../../environments');
 
 /**
  * Entra com o usuário e retorna um token de acesso

@@ -30,12 +30,12 @@ module.exports = {
             idSala: {
                 type: Sequelize.INTEGER,
                 references: {
-                  model: {
-                    tableName: 'sala',
-                  },
+                  model: 'sala',
                   key: 'id'
                 },
-                allowNull: false
+                allowNull: false,
+                onDelete: 'CASCADE',
+                onUpdate: 'CASCADE'
             }
         });
     },

@@ -1,28 +1,31 @@
 const jwt = require('jsonwebtoken');
 
-const { TOKEN_SECRET } = require('../../environments');
+const { HttpHelper } = require('../utils/http-helper');
 
-async function authMiddleware(request, response, next) {
+function authMiddleware(request, response, next) {
+    const httpHelper = new HttpHelper(response);
+
     try {
-        const accessToken = request.headers.authorization;
+        const token = request.headers.authorization;
 
-        if (accessToken) {
-            const token = accessToken.split(' ')[1];
-            jwt.verify(token, TOKEN_SECRET, (error, user) => {
-                if (error) {
-                    return response.status(401).json({
-                        error: 'Não autorizado!'
-                    });
+        if (token) {
+            const accessToken = token.split(' ')[1];
+            jwt.verify(
+                accessToken,
+                process.env.TOKEN_SECRET,
+                (error, user) => {
+                    if (error) {
+                        return httpHelper.unauthorized();
+                    }
+                    request.userId = user.id;
+                    next();
                 }
-
-                request.userId = user.id;
-                next();
-            });
+            );
+        } else {
+            return httpHelper.notFound('Token de acesso não foi encontrado!');
         }
     } catch (error) {
-        return response.status(500).json({
-            error: `Erro interno: ${error}`
-        });
+        return httpHelper.internalError(error);
     }
 }
 

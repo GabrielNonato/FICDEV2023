@@ -1,5 +1,5 @@
 const { HttpHelper } = require('../../utils/http-helper');
-const { UsuarioModel } = require('../../models/sala-model');
+const { SalaModel } = require('../../models/sala-model');
 
 class DeleteSalaController {
        

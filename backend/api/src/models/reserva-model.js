@@ -3,10 +3,10 @@ const { Model, DataTypes } = require("sequelize");
 class ReservaModel extends Model {
     static init(database) {
         super.init({
-            estado: DataTypes.BOOLEAN,
             nomeResponsavel: DataTypes.STRING(255),
             dia: DataTypes.DATEONLY,
-            horario: DataTypes.TIME,
+            horarioInicio: DataTypes.TIME,
+            horarioFim: DataTypes.TIME,
             idSala: DataTypes.INTEGER
         }, {
             tableName: 'reserva',

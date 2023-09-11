@@ -27,7 +27,7 @@ module.exports = {
                 type: Sequelize.TIME,
                 allowNull: false
             },
-            idSala: {
+            SalaId: {
                 type: Sequelize.INTEGER,
                 references: {
                   model: 'sala',

@@ -7,7 +7,7 @@ class ReservaModel extends Model {
             dia: DataTypes.DATEONLY,
             horarioInicio: DataTypes.TIME,
             horarioFim: DataTypes.TIME,
-            idSala: DataTypes.INTEGER
+            SalaId: DataTypes.INTEGER
         }, {
             tableName: 'reserva',
             modelName: 'Reserva',
@@ -18,7 +18,7 @@ class ReservaModel extends Model {
 
     
     static associate(models) {
-        this.belongsTo(models.Sala, { foreignKey: 'idSala' });
+        this.belongsTo(models.Sala, { foreignKey: 'SalaId' });
     }
     
 }

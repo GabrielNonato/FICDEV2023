@@ -5,12 +5,12 @@ class CreateReservaController {
     async create(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { nomeResponsavel,dia, horarioInicio, horarioFim,idSala } = request.body;
+            const { nomeResponsavel,dia, horarioInicio, horarioFim,SalaId } = request.body;
 
-            if (!nomeResponsavel || !dia || !horarioInicio || !horarioFim || !idSala ) return httpHelper.badRequest('Parâmetros inválidos!');
+            if (!nomeResponsavel || !dia || !horarioInicio || !horarioFim || !SalaId ) return httpHelper.badRequest('Parâmetros inválidos!');
 
             const reserva = await ReservaModel.create({
-                nomeResponsavel,dia,horarioInicio,horarioFim,idSala
+                nomeResponsavel,dia,horarioInicio,horarioFim,SalaId
             });
 
             return httpHelper.created(reserva);

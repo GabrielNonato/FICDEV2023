@@ -20,7 +20,7 @@ class UpdateUsuarioController {
             );
 
             const usuarioExists = await UsuarioModel.findByPk(id);
-            if (!usuarioExists) return httpHelper.notFound('Usuario não encontrada');
+            if (!usuarioExists) return httpHelper.notFound('Usuario não encontrado');
             await UsuarioModel.update({
                 email, 
                 senha:senhaHashed, 

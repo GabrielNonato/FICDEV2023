@@ -2,7 +2,7 @@ import { api } from "./api";
 
 export async function getSalas() {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.get('/salas', {
+    const result = await api.get('/sala/create', {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
         }
@@ -23,8 +23,8 @@ export async function deleteSala(id) {
 export async function updateSala(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/sala/update/${data.id}`, {
-        name: data.namesala,
-        email: data.emailsala
+        //nome: data.nameSala,
+        //unidadeMedida: data.unity
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
@@ -36,8 +36,8 @@ export async function updateSala(data) {
 export async function createSala(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.post('/sala/create', {
-        name: data.namesala,
-        email: data.emailsala
+        //nome: data.nameSala,
+        //unidadeMedida: data.unity
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

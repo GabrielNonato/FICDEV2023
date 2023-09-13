@@ -1,136 +1,104 @@
-import { Container, Col, Modal, Form, Button, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { useState } from "react";
+import { Button, Col, Container, Form } from "react-bootstrap";
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Food } from "../components/Food";
-import { Header } from "../components/Header";
-import { Input } from '../components/Input';
+import { Input } from "../components/Input";
+import { Header } from '../components/Header';
+import { Modal } from '../components/Modal';
 
-import { createFood, deleteFood, getFoods, updateFood } from "../services/food-service";
+import { signupUsuario } from "../services/usuario-services";
 
-export function Foods() {
-    const [foods, setFoods] = useState([]);
-    const [isCreated, setIsCreated] = useState(false);
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    const navigate = useNavigate();
+export function Sala() {
+    const { handleSubmit, register, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const [result, setResult] = useState(null);
+    //const navigate = useNavigate();
 
-    useEffect(() => {
-        findFoods();
-        // eslint-disable-next-line
-    }, []);
-
-    async function findFoods() {
+    const onSubmit = async (data) => {
         try {
-            const result = await getFoods();
-            setFoods(result.data);
+            const user = await signupUsuario(data);
+            setResult(user);
+            //navigate('/foods');
         } catch (error) {
-            console.error(error);
-            navigate('/');
-        }
-    }
-
-    async function removeFood(id) {
-        try {
-            await deleteFood(id);
-            await findFoods();
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function addFood(data) {
-        try {
-            await createFood(data);
-            setIsCreated(false);
-            await findFoods();
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function editFood(data) {
-        try {
-            await updateFood({
-                id: data.id,
-                nameFood: data.nameFood,
-                unity: data.unity
+            setResult({
+                title: 'Houve um erro no cadastro!',
+                message: error.response.data.error
             });
-            await findFoods();
-        } catch (error) {
-            console.error(error);
         }
     }
 
     return (
-        <Container fluid>
-            <Header title="Alimentos" />
-            <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Col md='10'>
-                    <Button onClick={() => setIsCreated(true)}>Criar novo alimento</Button>
-                </Col>
+        <Container>
+            <Modal
+                show={result}
+                title={result?.title}
+                message={result?.message}
+                handleClose={() => setResult(null)}
+            />
+            <Header title="Crie sua conta" />
+            <Form
+                noValidate
+                validated={!errors}
+                onSubmit={handleSubmit(onSubmit)}
+                autoComplete='off'
+                className="bg-light rounded p-5 shadow w-50 m-auto"
+            >
                 <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.removeItem('token');
-                        navigate('/');
-                    }}>Sair</Button>
+                    <Input
+                        className="mb-4"
+                        controlId="formGroupEmail"
+                        label="E-mail"
+                        type="email"
+                        name="email"
+                        errors={errors.email}
+                        placeholder="Insira seu e-mail"
+                        validations={register('email', {
+                            required: {
+                                value: true,
+                                message: 'E-mail é obrigatório'
+                            },
+                            pattern: {
+                                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                                message: 'E-mail inválido!'
+                            }
+                        })}
+                    />
+                    <Input
+                        className="mb-4"
+                        controlId="formGroupSenha"
+                        label="Senha"
+                        type="password"
+                        name="senha"
+                        errors={errors.senha}
+                        placeholder="Insira sua senha"
+                        validations={register('senha', {
+                            required: {
+                                value: true,
+                                message: 'Senha é obrigatória'
+                            }
+                        })}
+                    />
+                    <Input
+                        className="mb-4"
+                        controlId="formGroupNome"
+                        label="Nome"
+                        type="text"
+                        name="nome"
+                        errors={errors.nome}
+                        placeholder="Insira seu nome"
+                        validations={register('nome', {
+                            required: {
+                                value: true,
+                                message: 'Nome é obrigatório'
+                            }
+                        })}
+                    />
+                    <div className="d-flex justify-content-between">
+                        <Button type="submit" disabled={!isValid}>Criar</Button>
+                        <Link to="/">Já tenho uma conta</Link>
+                    </div>
                 </Col>
-            </Row>
-            <Col className="w-50 m-auto">
-                {foods && foods.length > 0
-                    ? foods.map((food, index) => (
-                        <Food
-                            key={index}
-                            food={food}
-                            removeFood={async () => await removeFood(food.id)}
-                            editFood={editFood}
-                        />
-                    ))
-                    : <p className="text-center">Não existe nenhum alimento cadastrado!</p>}
-            </Col>
-            {/* Formulário dentro do Modal, ideal seria componentizar também, pois é parecido com o Modal de editar */}
-            <Modal show={isCreated} onHide={() => setIsCreated(false)}>
-                <Modal.Header>
-                    <Modal.Title>Cadastrar novo alimento</Modal.Title>
-                </Modal.Header>
-                <Form noValidate onSubmit={handleSubmit(addFood)} validated={!!errors}>
-                    <Modal.Body>
-                        <Input
-                            className="mb-3"
-                            type='text'
-                            label='Nome do alimento'
-                            placeholder='Insira o nome do alimento'
-                            required={true}
-                            name='nameFood'
-                            error={errors.nameFood}
-                            validations={register('nameFood', {
-                                required: {
-                                    value: true,
-                                    message: 'Nome do alimento é obrigatório.'
-                                }
-                            })}
-                        />
-                        <Form.Group>
-                            <Form.Label>Seleciona a unidade de medida</Form.Label>
-                            <Form.Select {...register('unity')}>
-                                <option disabled>Clique para selecionar</option>
-                                <option value={'Kilograma'}>Kilograma</option>
-                                <option value={'Grama'}>Grama</option>
-                                <option value={'Mililitro'}>Mililitro</option>
-                                <option value={'Litro'}>Litro</option>
-                            </Form.Select>
-                        </Form.Group>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Criar
-                        </Button>
-                        <Button variant="secondary" onClick={() => setIsCreated(false)}>
-                            Fechar
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
+            </Form>
         </Container>
     );
 }

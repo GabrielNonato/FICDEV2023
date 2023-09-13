@@ -2,23 +2,22 @@ import { FloatingLabel, Form } from "react-bootstrap";
 
 export function Input(props) {
     return (
-        <Form.Group className={props.className}>
+        <Form.Group
+            className={props.className}
+            controlId={props.controlId}
+        >
             <FloatingLabel label={props.label}>
                 <Form.Control
                     type={props.type}
-                    placeholder={props.placeholder}
-                    isInvalid={props.error}
-                    required={props.required}
-                    id={props.name}
                     name={props.name}
+                    isInvalid={props.errors}
+                    placeholder={props.placeholder}
                     defaultValue={props.defaultValue}
                     {...props.validations}
                 />
-                {props.error && (
-                    <Form.Control.Feedback type="invalid">
-                        {props.error.message}
-                    </Form.Control.Feedback>
-                )}
+                <Form.Control.Feedback type="invalid">
+                    {props.errors?.message}
+                </Form.Control.Feedback>
             </FloatingLabel>
         </Form.Group>
     );

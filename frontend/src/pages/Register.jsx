@@ -10,15 +10,15 @@ import { Modal } from '../components/Modal';
 import { signupUsuario } from "../services/usuario-services";
 
 export function Register() {
-    const { handleSubmit, register, formState: { errors } } = useForm({mode:"all"});
+    const { handleSubmit, register, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [result, setResult] = useState(null);
     const navigate = useNavigate();
 
     const onSubmit = async (data) => {
         try {
-            const user = await signupUsuario(data);
-            setResult(user);
-            navigate('/home');
+            const usuario = await signupUsuario(data);
+            setResult(usuario);
+            navigate('/sala');
         } catch (error) {
             setResult({
                 title: 'Houve um erro no cadastro!',
@@ -40,51 +40,52 @@ export function Register() {
                 noValidate
                 validated={!errors}
                 onSubmit={handleSubmit(onSubmit)}
+                autoComplete='off'
                 className="bg-light rounded p-5 shadow w-50 m-auto"
             >
                 <Col>
                     <Input
                         className="mb-4"
+                        controlId="formGroupEmail"
                         label="E-mail"
-                        type="text"
-                        placeholder="Insira seu e-mail"
-                        error={errors.email}
-                        required={true}
+                        type="email"
                         name="email"
+                        errors={errors.email}
+                        placeholder="Insira seu e-mail"
                         validations={register('email', {
                             required: {
                                 value: true,
                                 message: 'E-mail é obrigatório'
                             },
-                            pattern: {
-                                value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
-                                message: 'E-mail inválido!'
-                            }
+                            // pattern: {
+                            //     value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                            //     message: 'E-mail inválido!'
+                            // }
                         })}
                     />
                     <Input
                         className="mb-4"
+                        controlId="formGroupSenha"
                         label="Senha"
                         type="password"
+                        name="senha"
+                        errors={errors.senha}
                         placeholder="Insira sua senha"
-                        error={errors.password}
-                        required={true}
-                        name="password"
-                        validations={register('password', {
+                        validations={register('senha', {
                             required: {
                                 value: true,
-                                message: 'Senha é obrigatório'
+                                message: 'Senha é obrigatória'
                             }
                         })}
                     />
                     <Input
                         className="mb-4"
+                        controlId="formGroupNome"
                         label="Nome"
                         type="text"
+                        name="nome"
+                        errors={errors.nome}
                         placeholder="Insira seu nome"
-                        error={errors.nome}
-                        required={true}
-                        name="password"
                         validations={register('nome', {
                             required: {
                                 value: true,
@@ -93,7 +94,7 @@ export function Register() {
                         })}
                     />
                     <div className="d-flex justify-content-between">
-                        <Button type="submit">Criar</Button>
+                        <Button type="submit" disabled={!isValid}>Criar</Button>
                         <Link to="/">Já tenho uma conta</Link>
                     </div>
                 </Col>

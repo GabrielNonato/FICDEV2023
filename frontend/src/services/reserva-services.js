@@ -23,8 +23,8 @@ export async function deleteReserva(id) {
 export async function updateReserva(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/reserva/update/${data.id}`, {
-        name: data.namereserva,
-        email: data.emailreserva
+        //nome: data.nameReserva,
+        //unidadeMedida: data.unity
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
@@ -36,8 +36,8 @@ export async function updateReserva(data) {
 export async function createReserva(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.post('/reserva/create', {
-        name: data.namereserva,
-        email: data.emailreserva
+        //nome: data.nameReserva,
+        //unidadeMedida: data.unity
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

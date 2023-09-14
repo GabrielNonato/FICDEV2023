@@ -1,8 +1,18 @@
 import { api } from "./api";
 
+export async function getFiltroSalas(capacidade) {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/sala/filtro/${capacidade}`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
 export async function getSalas() {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.get('/sala/create', {
+    const result = await api.get('/salas', {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
         }
@@ -23,8 +33,9 @@ export async function deleteSala(id) {
 export async function updateSala(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/sala/update/${data.id}`, {
-        //nome: data.nameSala,
-        //unidadeMedida: data.unity
+        nome: data.nomeSala,
+        departamento: data.departamentoSala,
+        capacidade: data.capacidadeSala
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
@@ -36,8 +47,9 @@ export async function updateSala(data) {
 export async function createSala(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.post('/sala/create', {
-        //nome: data.nameSala,
-        //unidadeMedida: data.unity
+        nome: data.nomeSala,
+        departamento: data.departamentoSala,
+        capacidade: data.capacidadeSala
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

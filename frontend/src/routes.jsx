@@ -1,9 +1,9 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { Sala } from './pages/Sala'
+import { Salas } from './pages/Salas'
 import { Register } from './pages/Register'
 import { Login } from './pages/Login'
-//import { Foods } from "./pages/Foods";
+
 import { isAuthenticated } from './utils/is-authenticated';
 
 export function PrivateRoute({ children }) {
@@ -31,7 +31,7 @@ export function Navigations() {
                     path="/sala"
                     element={(
                         <PrivateRoute>
-                            <Sala />
+                            <Salas />
                         </PrivateRoute>
                     )}
                 /> 

@@ -23,8 +23,7 @@ export async function deleteReserva(id) {
 export async function updateReserva(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/reserva/update/${data.id}`, {
-        //nome: data.nameReserva,
-        //unidadeMedida: data.unity
+        nomeResponsavel: data.nomeResponsavel
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

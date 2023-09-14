@@ -57,10 +57,10 @@ export function Register() {
                                 value: true,
                                 message: 'E-mail é obrigatório'
                             },
-                            // pattern: {
-                            //     value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                            //     message: 'E-mail inválido!'
-                            // }
+                            pattern: {
+                                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
+                                message: 'E-mail inválido!'
+                            }
                         })}
                     />
                     <Input
@@ -75,7 +75,8 @@ export function Register() {
                             required: {
                                 value: true,
                                 message: 'Senha é obrigatória'
-                            }
+                            },
+                            minLength: 6
                         })}
                     />
                     <Input

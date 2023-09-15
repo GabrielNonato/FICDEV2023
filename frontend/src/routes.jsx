@@ -3,6 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { Salas } from './pages/Salas'
 import { Register } from './pages/Register'
 import { Login } from './pages/Login'
+import { Reservas } from './pages/Reservas'
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -32,6 +33,14 @@ export function Navigations() {
                     element={(
                         <PrivateRoute>
                             <Salas />
+                        </PrivateRoute>
+                    )}
+                /> 
+                <Route
+                    path="/reserva"
+                    element={(
+                        <PrivateRoute>
+                            <Reservas />
                         </PrivateRoute>
                     )}
                 /> 

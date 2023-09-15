@@ -3,60 +3,62 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 
-import { Sala } from "../components/Sala";
+import { Reserva } from "../components/Reserva";
 import { Header } from "../components/Header";
 import { Input } from '../components/Input';
 
-import { createSala, deleteSala, getSalas, updateSala } from "../services/sala-services"
+import { createReserva, deleteReserva, getReservas, updateReserva } from "../services/reserva-services"
 
-export function Salas() {
-    const [salas, setSalas] = useState([]);
+export function Reservas() {
+    const [reservas, setReservas] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const navigate = useNavigate();
 
     useEffect(() => {
-        findSalas();
+        findReservas();
     }, []);
 
-    async function findSalas() {
+    async function findReservas() {
         try {
-            const result = await getSalas();
-            setSalas(result.data);
+            const result = await getReservas();
+            setReservas(result.data);
         } catch (error) {
             console.error(error);
             navigate('/');
         }
     }
 
-    async function removeSala(id) {
+    async function removeReserva(id) {
         try {
-            await deleteSala(id);
-            await findSalas();
+            await deleteReserva(id);
+            await findReservas();
         } catch (error) {
             console.error(error);
         }
     }
 
-    async function addSala(data) {
+    async function addReserva(data) {
         try {
-            await createSala(data);
+            await createReserva(data);
             setIsCreated(false);
-            await findSalas();
+            await findReservas();
         } catch (error) {
             console.error(error);
         }
     }
 
-    async function editSala(data) {
+    async function editReserva(data) {
         try {
-            await updateSala({
+            await updateReserva({
                 id: data.id,
-                nomeSala: data.nomeSala,
-                capacidadeSala: data.capacidadeSala,
-                departamentoSala: data.departamentoSala
+                nomeResponsavel: data.nomeResponsavel,
+                diaReserva: data.diaReserva,
+                horarioInicio: data.horarioInicio,
+                horarioFim: data.horarioFim,
+                idSala: data.idSala
             });
-            await findSalas();
+            await findReservas();
         } catch (error) {
             console.error(error);
         }
@@ -64,10 +66,10 @@ export function Salas() {
 
     return (
         <Container fluid>
-            <Header title="Salas" />
+            <Header title="Reservas" />
             <Row className="w-50 m-auto mb-5 mt-5 ">
                 <Col md='10'>
-                    <Button onClick={() => setIsCreated(true)}>Adicionar nova sala</Button>
+                    <Button onClick={() => setIsCreated(true)}>Reservar Sala</Button>
                 </Col>
                 <Col>
                     <Button variant="outline-secondary" onClick={() => {
@@ -77,75 +79,110 @@ export function Salas() {
                 </Col>
             </Row>
             <Col className="w-50 m-auto">
-                {salas && salas.length > 0
-                    ? salas.map((sala, index) => (
-                        <Sala
+                {reservas && reservas.length > 0
+                    ? reservas.map((reserva, index) => (
+                        <Reserva
                             key={index}
-                            sala={sala}
-                            removeSala={async () => await removeSala(sala.id)}
-                            editSala={editSala}
+                            reserva={reserva}
+                            removeReserva={async () => await removeReserva(reserva.id)}
+                            editReserva={editReserva}
                         />
                     ))
-                    : <p className="text-center">Não existe nenhuma sala cadastrada!</p>}
+                    : <p className="text-center">Nenhuma sala reservada!</p>}
             </Col>
             <Modal show={isCreated} onHide={() => setIsCreated(false)}>
                 <Modal.Header>
-                    <Modal.Title>Adicionar nova sala</Modal.Title>
+                    <Modal.Title>Reservar Sala</Modal.Title>
                 </Modal.Header>
                 <Form
                     noValidate
                     validated={!errors}
-                    onSubmit={handleSubmit(addSala)}
+                    onSubmit={handleSubmit(addReserva)}
                     autoComplete='off'
                 >
                     <Modal.Body>
                         <Input
                             className="mb-3"
-                            controlId="formGroupNomeSala"
-                            label='Nome da sala'
+                            controlId="formGroupNomeResponsavel"
+                            label='Nome do responsavel pela sala'
                             type='text'
-                            name='nomeSala'
-                            errors={errors.nomeSala}
-                            placeholder='Insira o nome da sala'
-                            validations={register('nomeSala', {
+                            name='nomeResponsavel'
+                            errors={errors.nomeResponsavel}
+                            placeholder='Insira o nome do responsavel pela sala'
+                            validations={register('nomeResponsavel', {
                                 required: {
                                     value: true,
-                                    message: 'Nome da sala é obrigatório.'
+                                    message: 'Nome do responsável é obrigatório.'
                                 }
                             })}
                         />
                         <Input
                             className="mb-3"
-                            controlId="formGroupCapacidadeSala"
-                            label='Capacidade da sala'
-                            type='text'
-                            name='capacidadeSala'
-                            errors={errors.capacidadeSala}
-                            placeholder='Insira a capacidade da sala'
-                            validations={register('capacidadeSala', {
+                            controlId="formGroupDiaReserva"
+                            label='Dia da reserva'
+                            type='date'
+                            name='diaReserva'
+                            errors={errors.diaReserva}
+                            placeholder='Insira o dia da reserva'
+                            validations={register('diaReserva', {
                                 required: {
                                     value: true,
-                                    message: 'Capacidade da sala é obrigatório.'
+                                    message: 'Dia da reserva é obrigatório.'
                                 }
                             })}
-                        /><Input
-                        className="mb-3"
-                        controlId="formGroupNomeSala"
-                        label='Departamento da sala'
-                        type='text'
-                        name='departamentoSala'
-                        errors={errors.departamentoSala}
-                        placeholder='Insira o departamento da sala'
-                        validations={register('departamentoSala', {
-                            required: {
-                                value: true,
-                                message: 'Departamento da sala é obrigatório.'
-                            }
-                        })}
-                    />
+                        />
+                    <Form.Group controlId="formHorarioInicio">
+                        <Form.Label>Horario de inicio</Form.Label>
+                        <Form.Select
+                            name="horarioInicio"
+                            {...register('horarioInicio')}
+                        >
+                            <option disabled>Clique para selecionar</option>
+                            <option value='07:00'>07:00</option>
+                            <option value='09:00'>09:00</option>
+                            <option value='11:00'>11:00</option>
+                            <option value='13:00'>13:00</option>
+                            <option value='15:00'>15:00</option>
+                            <option value='17:00'>17:00</option>
+                            <option value='19:00'>19:00</option>
+                            <option value='21:00'>21:00</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Form.Group controlId="formHorarioFim">
+                        <Form.Label>Horario final</Form.Label>
+                        <Form.Select
+                            name="horarioFim"
+                            {...register('horarioFim')}
+                        >
+                            <option disabled>Clique para selecionar</option>
+                            <option value='09:00'>09:00</option>
+                            <option value='11:00'>11:00</option>
+                            <option value='13:00'>13:00</option>
+                            <option value='15:00'>15:00</option>
+                            <option value='17:00'>17:00</option>
+                            <option value='19:00'>19:00</option>
+                            <option value='21:00'>21:00</option>
+                            <option value='23:00'>07:00</option>
+                        </Form.Select>
+                    </Form.Group>
+                    <Input
+                            className="mb-3"
+                            controlId="formGroupIdSala"
+                            label='idSala'
+                            type='number'
+                            name='idSala'
+                            errors={errors.idSala}
+                            placeholder='Insira o codigo da sala'
+                            validations={register('idSala', {
+                                required: {
+                                    value: true,
+                                    message: 'Codigo da reserva é obrigatório.'
+                                }
+                            })}
+                        />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" type="submit" disabled={!isValid}>Criar</Button>
+                        <Button variant="primary" type="submit" disabled={!isValid}>Reservar</Button>
                         <Button variant="secondary" onClick={() => setIsCreated(false)}>Fechar</Button>
                     </Modal.Footer>
                 </Form>

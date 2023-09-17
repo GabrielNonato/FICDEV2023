@@ -17,6 +17,7 @@ export function Reservas() {
 
     useEffect(() => {
         findReservas();
+        // eslint-disable-next-line
     }, []);
 
     async function findReservas() {

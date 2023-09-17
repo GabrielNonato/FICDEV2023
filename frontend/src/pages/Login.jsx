@@ -18,7 +18,7 @@ export function Login() {
         try {
             const usuario = await loginUsuario(data);
             setResult(usuario);
-            navigate('/sala');
+            navigate('/home');
         } catch (error) {
             setResult({
                 title: 'Houve um erro no login!',

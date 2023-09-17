@@ -4,6 +4,7 @@ import { Salas } from './pages/Salas'
 import { Register } from './pages/Register'
 import { Login } from './pages/Login'
 import { Reservas } from './pages/Reservas'
+import { Home } from './pages/Home'
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -28,6 +29,14 @@ export function Navigations() {
                         <Register />
                     }
                 />
+                <Route
+                    path="/home"
+                    element={(
+                        <PrivateRoute>
+                            <Home />
+                        </PrivateRoute>
+                    )}
+                /> 
                <Route
                     path="/sala"
                     element={(

@@ -35,7 +35,7 @@ export function Reserva(props) {
             </Card>
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
-                    <Modal.Title>Editar reserva: {props.reserva.nome}</Modal.Title>
+                    <Modal.Title>Editar reserva: {props.reserva.dia}</Modal.Title>
                 </Modal.Header>
                 <Form
                     noValidate

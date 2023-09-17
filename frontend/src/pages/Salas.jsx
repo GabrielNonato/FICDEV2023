@@ -15,8 +15,10 @@ export function Salas() {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const navigate = useNavigate();
 
+    
     useEffect(() => {
         findSalas();
+        // eslint-disable-next-line
     }, []);
 
     async function findSalas() {

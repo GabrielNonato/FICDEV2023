@@ -3,7 +3,8 @@ const { Router } = require('express');
 const SignupUsuarioController = require('./controllers/usuario-controller/signup-usuario-controller');
 const SigninUsuarioController = require('./controllers/usuario-controller/signin-usuario-controller');
 const DeleteUsuarioController = require('./controllers/usuario-controller/delete-usuario-controller');
-const UpdateUsuarioController = require('./controllers/usuario-controller/update-usuario-controller')
+const UpdateUsuarioController = require('./controllers/usuario-controller/update-usuario-controller');
+const GetUsuarioController = require('./controllers/usuario-controller/get-usuario-controller')
 
 const CreateSalaController = require('./controllers/sala-controller/create-sala-controller');
 const UpdateSalaController = require('./controllers/sala-controller/update-sala-controller');
@@ -26,6 +27,7 @@ routes.post('/usuario/signup', SignupUsuarioController.signup);
 routes.post('/usuario/signin', SigninUsuarioController.signin);
 routes.delete('/usuario/delete/:id', authMiddleware, DeleteUsuarioController.delete)
 routes.put('/usuario/update/:id', authMiddleware, UpdateUsuarioController.update)
+routes.get('/usuario/:id', authMiddleware, GetUsuarioController.getAll)
 
 // Sala
 routes.post('/sala/create', authMiddleware, CreateSalaController.create);

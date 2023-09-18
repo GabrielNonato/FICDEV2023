@@ -18,7 +18,7 @@ export function Register() {
         try {
             const usuario = await signupUsuario(data);
             setResult(usuario);
-            navigate('/sala');
+            navigate('/home');
         } catch (error) {
             setResult({
                 title: 'Houve um erro no cadastro!',

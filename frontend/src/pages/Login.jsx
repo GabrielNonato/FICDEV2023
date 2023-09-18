@@ -10,7 +10,7 @@ import { Modal } from '../components/Modal';
 import { loginUsuario } from '../services/usuario-services';
 
 export function Login() {
-    const { handleSubmit, register, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const { handleSubmit, register, formState: { errors, isValid } } = useForm();
     const [result, setResult] = useState(null);
     const navigate = useNavigate();
 
@@ -54,13 +54,9 @@ export function Login() {
                         placeholder="Insira seu e-mail"
                         validations={register('email', {
                             required: {
-                                value: true,
-                                message: 'E-mail é obrigatório'
+                                value: false,
                             },
-                            pattern: {
-                                value: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-                                message: 'E-mail inválido!'
-                            }
+                            
                         })}
                     />
                     <Input
@@ -73,8 +69,7 @@ export function Login() {
                         placeholder="Insira sua senha"
                         validations={register('senha', {
                             required: {
-                                value: true,
-                                message: 'Senha é obrigatória'
+                                value: false,
                             }
                         })}
                     />

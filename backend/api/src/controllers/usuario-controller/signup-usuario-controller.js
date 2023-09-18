@@ -35,7 +35,10 @@ class SignupUsuarioController {
                 { expiresIn: process.env.TOKEN_EXPIRES_IN }
             );
 
-            return httpHelper.created({ accessToken });
+            return httpHelper.created({ 
+                accessToken,
+                idUsuario: usuario.id
+            });
         } catch (error) {
             return httpHelper.internalError(error);
         }

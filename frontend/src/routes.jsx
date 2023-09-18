@@ -5,6 +5,7 @@ import { Register } from './pages/Register'
 import { Login } from './pages/Login'
 import { Reservas } from './pages/Reservas'
 import { Home } from './pages/Home'
+import { Perfil } from './pages/Perfil'
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -34,6 +35,14 @@ export function Navigations() {
                     element={(
                         <PrivateRoute>
                             <Home />
+                        </PrivateRoute>
+                    )}
+                /> 
+                <Route
+                    path="/perfil"
+                    element={(
+                        <PrivateRoute>
+                            <Perfil />
                         </PrivateRoute>
                     )}
                 /> 

@@ -7,7 +7,7 @@ import { Reserva } from "../components/Reserva";
 import { Header } from "../components/Header";
 import { Input } from '../components/Input';
 
-import { createReserva, deleteReserva, getReservas, updateReserva } from "../services/reserva-services"
+import { createReserva, deleteReserva, getReservas, updateReserva, getFiltroReservas } from "../services/reserva-services"
 
 export function Reservas() {
     const [reservas, setReservas] = useState([]);
@@ -27,6 +27,15 @@ export function Reservas() {
         } catch (error) {
             console.error(error);
             navigate('/');
+        }
+    }
+
+    async function findDiaReservas(data) {
+        try {
+            const result = await getFiltroReservas(data);
+            setReservas(result.data);
+        } catch (error) {
+            console.error(error);
         }
     }
 
@@ -74,10 +83,39 @@ export function Reservas() {
                 </Col>
                 <Col>
                     <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.removeItem('token');
-                        navigate('/');
-                    }}>Sair</Button>
+                        navigate('/home');
+                    }}>Voltar</Button>
                 </Col>
+            </Row>
+            <Row className="w-50 m-auto mb-5 mt-5 ">
+                <Form
+                    noValidate
+                    validated={!errors}
+                    onSubmit={handleSubmit(findDiaReservas)}
+                    autoComplete='off'
+                >
+                    <Modal.Body>
+                        <Input
+                            className="mb-3"
+                            controlId="formGroupFiltroReserva"
+                            label='Digite o dia da reserva'
+                            type='date'
+                            name='filtroReserva'
+                            errors={errors.filtroReserva}
+                            placeholder='Insira o filtro da reserva'
+                            validations={register('filtroReserva', {
+                                required: {
+                                    value: false,
+                                },
+                                valueAsDate: true
+                            })}
+                        />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" type="submit" >Filtrar</Button>
+
+                    </Modal.Footer>
+                </Form>
             </Row>
             <Col className="w-50 m-auto">
                 {reservas && reservas.length > 0

@@ -28,7 +28,10 @@ class SigninUsuarioController {
                 { expiresIn: process.env.TOKEN_EXPIRES_IN }
             );
 
-            return httpHelper.ok({ accessToken });
+            return httpHelper.ok({ 
+                accessToken,
+                idUsuario: usuarioExists.id
+            });
         } catch (error) {
             return httpHelper.internalError(error);
         }

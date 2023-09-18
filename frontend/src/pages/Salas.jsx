@@ -13,6 +13,7 @@ export function Salas() {
     const [salas, setSalas] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+
     const navigate = useNavigate();
 
     
@@ -33,6 +34,7 @@ export function Salas() {
 
     async function findCapacidadeSalas(data) {
         try {
+            console.log('teste')
             const result = await getFiltroSalas(data);
             setSalas(result.data);
         } catch (error) {
@@ -83,9 +85,8 @@ export function Salas() {
                 </Col>
                 <Col>
                     <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.removeItem('token');
-                        navigate('/');
-                    }}>Sair</Button>
+                        navigate('/home');
+                    }}>Voltar</Button>
                 </Col>
             </Row>
             <Row className="w-50 m-auto mb-5 mt-5 ">
@@ -106,7 +107,7 @@ export function Salas() {
                             placeholder='Insira o filtro da sala'
                             validations={register('filtroSala', {
                                 required: {
-                                    value: true,
+                                    value: false,
                                 }
                             })}
                         />
@@ -167,7 +168,7 @@ export function Salas() {
                                 required: {
                                     value: true,
                                     message: 'Capacidade da sala é obrigatório.'
-                                }
+                                },
                             })}
                         /><Input
                         className="mb-3"

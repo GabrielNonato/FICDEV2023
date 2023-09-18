@@ -1,8 +1,8 @@
 import { api } from "./api";
 
-export async function getFiltroSalas(capacidade) {
+export async function getFiltroSalas(data) {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.get(`/sala/filtro/${capacidade}`, {
+    const result = await api.get(`/sala/filtro/${data.filtroSala}`, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
         }

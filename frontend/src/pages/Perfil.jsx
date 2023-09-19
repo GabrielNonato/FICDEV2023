@@ -1,16 +1,18 @@
-import { Container, Col, Card, Button, Row } from "react-bootstrap";
+import { Container, Modal, Card, Button, Row, Form, Col} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 
+import { Input } from "../components/Input"
 
-import { PerfilUsuario } from "../components/PerfilUsuario";
 import { Header } from "../components/Header";
 
 
 import { deleteUsuario, getUsuario, updateUsuario } from "../services/usuario-services"
 
-export function Perfil() {
+export function Perfil(props) {
     const [usuario, setUsuario] = useState([]);
+    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [isUpdated, setIsUpdated] = useState(false);
     const navigate = useNavigate();
 
@@ -45,9 +47,9 @@ export function Perfil() {
         try {   
             await updateUsuario({
                 id: id,
-                nome: data.nomeUsuario,
-                email: data.emailUsuario,
-                senha: data.senhaUsuario
+                nomeUsuario: data.nomeUsuario,
+                emailUsuario: data.emailUsuario,
+                senhaUsuario: data.senhaUsuario
             });
             await findUsuario();
         } catch (error) {
@@ -58,9 +60,14 @@ export function Perfil() {
     return (
         <Container fluid>
             <Header title="Perfil" />
+            <Col>
+                    <Button variant="outline-secondary" onClick={() => {
+                        navigate('/home');
+                    }}>Voltar</Button>
+            </Col>
             <Card className="mb-3 p-3 bg-light">
-                <Card.Title><strong>Email: </strong>{usuario.email}</Card.Title>
-                <Card.Text><strong>Senha: </strong>{usuario.senha}</Card.Text>
+                <Card.Title><strong>Nome: </strong>{usuario.nome}</Card.Title>
+                <Card.Text><strong>Email: </strong>{usuario.email}</Card.Text>
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="primary" onClick={() => setIsUpdated(true)}>Editar</Button>
                     <Button
@@ -73,7 +80,70 @@ export function Perfil() {
                 </Row>
             </Card>
            
-            
+            <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
+                <Modal.Header>
+                    <Modal.Title>Editar usuario: {usuario.nome}</Modal.Title>
+                </Modal.Header>
+                <Form
+                    noValidate
+                    validated={!errors}
+                    onSubmit={handleSubmit(editUsuario)}
+                    autoComplete='off'
+                >
+                    <Modal.Body>
+                        <Input
+                            className="mb-3"
+                            controlId="formGroupNomeUsuario"
+                            label='Nome do usuario'
+                            type='text'
+                            name='nomeUsuario'
+                            errors={errors.nomeUsuario}
+                            placeholder='Insira o nome do responsavel pela sala'
+                            validations={register('nomeUsuario', {
+                                required: {
+                                    value: true,
+                                    message: 'Nome do usuario é obrigatório.'
+                                }
+                            })}
+                        />
+                        <Input
+                            className="mb-3"
+                            controlId="formGroupEmailUsuario"
+                            label='email'
+                            type='email'
+                            name='emailUsuario'
+                            errors={errors.emailUsuario}
+                            placeholder='Insira o dia da reserva'
+                            validations={register('emailUsuario', {
+                                required: {
+                                    value: true,
+                                    message: 'Email usuario é obrigatório.'
+                                }
+                            })}
+                        />
+                    
+                    <Input
+                            className="mb-3"
+                            controlId="formGroupSenha"
+                            label='senhaUsuario'
+                            type='password'
+                            name='senhaUsuario'
+                            errors={errors.senhaUsuario}
+                            placeholder='Insira o codigo da sala'
+                            validations={register('senhaUsuario', {
+                                required: {
+                                    value: true,
+                                    message: 'senha é obrigatório.'
+                                }
+                            })}
+                        />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button variant="primary" type="submit" disabled={!isValid}>Editar</Button>
+                        <Button variant="secondary" onClick={() => setIsUpdated(false)}>Fechar</Button>
+                    </Modal.Footer>
+                </Form>
+            </Modal>
                 
         </Container>
     );

@@ -8,17 +8,31 @@ import { Header } from "../components/Header";
 import { Input } from '../components/Input';
 
 import { createReserva, deleteReserva, getReservas, updateReserva, getFiltroReservas } from "../services/reserva-services"
+import { getSalas } from "../services/sala-services"
 
 export function Reservas() {
     const [reservas, setReservas] = useState([]);
+    const [salas, setSalas] = useState([])
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const navigate = useNavigate();
+    const [dia, setDia] = useState("")
 
     useEffect(() => {
         findReservas();
+        findSalas();
         // eslint-disable-next-line
     }, []);
+
+    async function findSalas() {
+        try {
+            const result = await getSalas();
+            setSalas(result.data);
+        } catch (error) {
+            console.error(error);
+            navigate('/');
+        }
+    }
 
     async function findReservas() {
         try {
@@ -30,9 +44,9 @@ export function Reservas() {
         }
     }
 
-    async function findDiaReservas(data) {
+    async function filtrar() {
         try {
-            const result = await getFiltroReservas(data);
+            const result = await getFiltroReservas({dia: dia});
             setReservas(result.data);
         } catch (error) {
             console.error(error);
@@ -87,35 +101,20 @@ export function Reservas() {
                     }}>Voltar</Button>
                 </Col>
             </Row>
-            <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Form
-                    noValidate
-                    validated={!errors}
-                    onSubmit={handleSubmit(findDiaReservas)}
-                    autoComplete='off'
-                >
-                    <Modal.Body>
-                        <Input
-                            className="mb-3"
-                            controlId="formGroupFiltroReserva"
-                            label='Digite o dia da reserva'
-                            type='date'
-                            name='filtroReserva'
-                            errors={errors.filtroReserva}
-                            placeholder='Insira o filtro da reserva'
-                            validations={register('filtroReserva', {
-                                required: {
-                                    value: false,
-                                },
-                                valueAsDate: true
-                            })}
+            <Row className="w-50 m-auto mb-2">
+                <Col md='8'>
+                    <Form.Group className="mb-3">
+                        <Form.Control
+                            type="date"
+                            placeholder="Filtrar por dia"
+                            value={dia}
+                            onChange={(e) => setDia(e.target.value)}
                         />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit" >Filtrar</Button>
-
-                    </Modal.Footer>
-                </Form>
+                    </Form.Group>
+                </Col>
+                <Col md='2'>
+                    <Button onClick={filtrar}>Filtrar</Button>
+                </Col>
             </Row>
             <Col className="w-50 m-auto">
                 {reservas && reservas.length > 0
@@ -204,21 +203,22 @@ export function Reservas() {
                             <option value='23:00'>07:00</option>
                         </Form.Select>
                     </Form.Group>
-                    <Input
-                            className="mb-3"
-                            controlId="formGroupIdSala"
-                            label='idSala'
-                            type='number'
-                            name='idSala'
-                            errors={errors.idSala}
-                            placeholder='Insira o codigo da sala'
-                            validations={register('idSala', {
-                                required: {
-                                    value: true,
-                                    message: 'Codigo da reserva é obrigatório.'
-                                }
-                            })}
-                        />
+
+                    <Form.Group controlId="formIdSala">
+                        <Form.Label>Sala</Form.Label>
+                        <Form.Select
+                            name="idSala"
+                            {...register('idSala')}
+                        >
+                            <option disabled>Clique para selecionar</option>
+                            {salas && salas.length > 0
+                                ? salas.map((sala, index) => (
+                                    <option value={sala.id}>{sala.nome}</option>
+                                ))
+                                : <p className="text-center">Não existe nenhuma sala cadastrado!</p>}
+                        </Form.Select>
+                    </Form.Group>
+                    
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" type="submit" disabled={!isValid}>Reservar</Button>
@@ -229,3 +229,4 @@ export function Reservas() {
         </Container>
     );
 }
+

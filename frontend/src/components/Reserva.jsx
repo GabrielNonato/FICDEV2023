@@ -1,17 +1,36 @@
 import { useState } from "react";
 import { Button, Card, Form, Modal, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import { getSalas } from "../services/sala-services"
 
 import { Input } from "./Input";
 
 export function Reserva(props) {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [isUpdated, setIsUpdated] = useState(false);
-
+    const [salas, setSalas] = useState([])
+    
     async function editReserva(data) {
         await props.editReserva({ ...data, id: props.reserva.id });
         setIsUpdated(false);
     }
+
+
+    useEffect(() => {
+        findSalas();
+        // eslint-disable-next-line
+    }, []);
+
+    async function findSalas() {
+        try {
+            const result = await getSalas();
+            setSalas(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
 
     return (
         <>
@@ -108,21 +127,20 @@ export function Reserva(props) {
                             <option value='23:00'>07:00</option>
                         </Form.Select>
                     </Form.Group>
-                    <Input
-                            className="mb-3"
-                            controlId="formGroupIdSala"
-                            label='idSala'
-                            type='number'
-                            name='idSala'
-                            errors={errors.idSala}
-                            placeholder='Insira o codigo da sala'
-                            validations={register('idSala', {
-                                required: {
-                                    value: true,
-                                    message: 'Codigo da reserva é obrigatório.'
-                                }
-                            })}
-                        />
+                    <Form.Group controlId="formIdSala">
+                        <Form.Label>Sala</Form.Label>
+                        <Form.Select
+                            name="idSala"
+                            {...register('idSala')}
+                        >
+                            <option disabled>Clique para selecionar</option>
+                            {salas && salas.length > 0
+                                ? salas.map((sala, index) => (
+                                    <option value={sala.id}>{sala.nome}</option>
+                                ))
+                                : <p className="text-center">Não existe nenhuma sala cadastrado!</p>}
+                        </Form.Select>
+                    </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="primary" type="submit" disabled={!isValid}>Editar</Button>

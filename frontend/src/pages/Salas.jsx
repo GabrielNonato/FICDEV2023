@@ -13,6 +13,7 @@ export function Salas() {
     const [salas, setSalas] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const [capacidade, setCapacidade] = useState("")
 
     const navigate = useNavigate();
 
@@ -32,14 +33,16 @@ export function Salas() {
         }
     }
 
-    async function findCapacidadeSalas(data) {
+    async function filtrar() {
         try {
-            console.log('teste')
-            const result = await getFiltroSalas(data);
+            if (!capacidade) {
+                return; 
+            }
+
+            const result = await getFiltroSalas({ capacidade: capacidade });
             setSalas(result.data);
         } catch (error) {
             console.error(error);
-            navigate('/');
         }
     }
 
@@ -89,34 +92,20 @@ export function Salas() {
                     }}>Voltar</Button>
                 </Col>
             </Row>
-            <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Form
-                    noValidate
-                    validated={!errors}
-                    onSubmit={handleSubmit(findCapacidadeSalas)}
-                    autoComplete='off'
-                >
-                    <Modal.Body>
-                        <Input
-                            className="mb-3"
-                            controlId="formGroupFiltroSala"
-                            label='Digite a capacidade da sala desejada'
-                            type='number'
-                            name='filtroSala'
-                            errors={errors.filtroSala}
-                            placeholder='Insira o filtro da sala'
-                            validations={register('filtroSala', {
-                                required: {
-                                    value: false,
-                                }
-                            })}
+            <Row className="w-50 m-auto mb-2">
+                <Col md='8'>
+                    <Form.Group className="mb-3">
+                        <Form.Control
+                            type="number"
+                            placeholder="Filtrar por capacidade"
+                            value={capacidade}
+                            onChange={(e) => setCapacidade(e.target.value)}
                         />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit" >Filtrar</Button>
-
-                    </Modal.Footer>
-                </Form>
+                    </Form.Group>
+                </Col>
+                <Col md='2'>
+                    <Button onClick={filtrar}>Filtrar</Button>
+                </Col>
             </Row>
             <Col className="w-50 m-auto">
                 {salas && salas.length > 0

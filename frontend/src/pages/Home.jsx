@@ -18,11 +18,6 @@ export function Home() {
                 <Button type="submit">Reservas</Button>
             </Link>
 
-
-            {/*<Link to="/user">
-                <Button type="submit">Perfil</Button>
-    </Link>*/}
-
         </div>
     );
 

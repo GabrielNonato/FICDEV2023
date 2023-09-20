@@ -9,6 +9,18 @@ class CreateReservaController {
 
             if (!nomeResponsavel || !dia || !horarioInicio || !horarioFim || !SalaId ) return httpHelper.badRequest('Parâmetros inválidos!');
 
+            const verificarReservas = await ReservaModel.findAll();
+            
+            let tamanho = verificarReservas.length
+            
+            for(let i = 0;i<tamanho;i++){
+                if(verificarReservas[i].dia==dia && verificarReservas[i].SalaId == SalaId){
+                    if(horarioFim > verificarReservas[i].horarioInicio && horarioInicio<verificarReservas[i].horarioFim ){
+                        return httpHelper.badRequest('Horário já reservado!');
+                    }
+                }
+            }         
+            
             const reserva = await ReservaModel.create({
                 nomeResponsavel,dia,horarioInicio,horarioFim,SalaId
             });

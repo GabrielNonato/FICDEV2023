@@ -176,14 +176,14 @@ export function Reservas() {
                             {...register('horarioInicio')}
                         >
                             <option disabled>Clique para selecionar</option>
-                            <option value='07:00'>07:00</option>
-                            <option value='09:00'>09:00</option>
-                            <option value='11:00'>11:00</option>
-                            <option value='13:00'>13:00</option>
-                            <option value='15:00'>15:00</option>
-                            <option value='17:00'>17:00</option>
-                            <option value='19:00'>19:00</option>
-                            <option value='21:00'>21:00</option>
+                            <option value='07:00:00'>07:00</option>
+                            <option value='09:00:00'>09:00</option>
+                            <option value='11:00:00'>11:00</option>
+                            <option value='13:00:00'>13:00</option>
+                            <option value='15:00:00'>15:00</option>
+                            <option value='17:00:00'>17:00</option>
+                            <option value='19:00:00'>19:00</option>
+                            <option value='21:00:00'>21:00</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group controlId="formHorarioFim">
@@ -193,14 +193,14 @@ export function Reservas() {
                             {...register('horarioFim')}
                         >
                             <option disabled>Clique para selecionar</option>
-                            <option value='09:00'>09:00</option>
-                            <option value='11:00'>11:00</option>
-                            <option value='13:00'>13:00</option>
-                            <option value='15:00'>15:00</option>
-                            <option value='17:00'>17:00</option>
-                            <option value='19:00'>19:00</option>
-                            <option value='21:00'>21:00</option>
-                            <option value='23:00'>07:00</option>
+                            <option value='09:00:00'>09:00</option>
+                            <option value='11:00:00'>11:00</option>
+                            <option value='13:00:00'>13:00</option>
+                            <option value='15:00:00'>15:00</option>
+                            <option value='17:00:00'>17:00</option>
+                            <option value='19:00:00'>19:00</option>
+                            <option value='21:00:00'>21:00</option>
+                            <option value='23:00:00'>23:00</option>
                         </Form.Select>
                     </Form.Group>
 
@@ -215,7 +215,7 @@ export function Reservas() {
                                 ? salas.map((sala, index) => (
                                     <option value={sala.id}>{sala.nome}</option>
                                 ))
-                                : <p className="text-center">Não existe nenhuma sala cadastrado!</p>}
+                                : <p className="text-center">Não existe nenhuma sala cadastrada!</p>}
                         </Form.Select>
                     </Form.Group>
                     

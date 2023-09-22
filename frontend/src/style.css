@@ -2,3 +2,18 @@
     text-decoration: none;
     color: #ffffff
 }
+
+.sidebar ul li a:hover{
+    background-color: rgb(117,117,117);
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover{
+    color: rgb(255, 255, 255);
+}
+
+.ativo{
+    background-color: rgb(117,117,117);
+    border-radius: 5px;
+    color:white;
+}

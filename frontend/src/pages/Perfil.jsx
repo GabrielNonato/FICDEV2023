@@ -7,7 +7,6 @@ import { Input } from "../components/Input"
 
 import { Header } from "../components/Header";
 
-
 import { deleteUsuario, getUsuario, updateUsuario } from "../services/usuario-services"
 
 export function Perfil(props) {
@@ -58,6 +57,7 @@ export function Perfil(props) {
     }
 
     return (
+        
         <Container fluid>
             <Header title="Perfil" />
             <Col>

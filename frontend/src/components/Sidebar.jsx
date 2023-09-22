@@ -14,19 +14,22 @@ function Sidebar(){
                 </Link>
                 <hr className='text-white mt-2'/>
                 <ul className='nav nav-pills flex-column mt-2'>
-                    <li className='nav-item p-2'>
+                    <li className={ativo ===1 ? 'ativo nav-item p-2':'nav-item p-2'}
+                        onClick={e => setAtivo(1)}>
                     <Link className='removeDestaque' to="/home">
                         <i className='bi bi-speedometer2 me-3 fs-5'></i>
                         <span className='fs-6'><strong>DASHBOARD</strong></span>
                     </Link>
                     </li>
-                    <li className='nav-item p-2'>
+                    <li className={ativo === 2 ? 'ativo nav-item p-2':'nav-item p-2'}
+                        onClick={e => setAtivo(2)}>
                     <Link className='removeDestaque' to="/reserva">
                         <i className='bi bi-calendar me-3 fs-5'></i>
                         <span className='fs-6'><strong>RESERVAS</strong></span>
                     </Link>
                     </li>
-                    <li className='nav-item p-2'>
+                    <li className={ativo ===3 ? 'ativo nav-item p-2':'nav-item p-2'}
+                        onClick={e => setAtivo(3)}>
                     <Link className='removeDestaque' to="/sala">
                         <i className='bi bi-box me-3 fs-5'></i>
                         <span className='fs-6'><strong>SALAS</strong></span>

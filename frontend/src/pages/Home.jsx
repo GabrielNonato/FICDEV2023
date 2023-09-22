@@ -1,17 +1,32 @@
 // import { Button } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import Sidebar from '../components/Sidebar'
+import Navbar from '../components/Navbar';
+import Dashboard from '../components/Dashboard'
 
 export function Home() {
 
     return (
-        // <div className="text-center mt-5">
         <div className="d-flex">
             <div className="w-auto">
                 <Sidebar/>
             </div>
             <div className="col">
-            
+                <Navbar />
+                <Dashboard/>
+            </div>
+        </div>
+    );
+
+}
+
+ // <div className="text-center mt-5">
+        <div className="d-flex">
+            <div className="w-auto">
+                <Sidebar/>
+            </div>
+            <div className="col">
+                <Navbar />
             </div>
         </div>
             // {/* <p>Selecione a opcao desejada</p>
@@ -26,8 +41,3 @@ export function Home() {
             // <Link to="/reserva">
             //     <Button type="submit">Reservas</Button>
             // </Link> */}
-
-
-    );
-
-}

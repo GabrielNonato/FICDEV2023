@@ -42,7 +42,7 @@ export function Reserva(props) {
                 <Card.Text><strong>Horario fim: </strong>{props.reserva.horarioFim}</Card.Text>
 
                 <Row xs="auto" className="d-flex justify-content-end">
-                    <Button variant="secondary" onClick={() => setIsUpdated(    )}>Editar</Button>
+                    <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>
                     <Button
                         variant="outline-danger"
                         className="ms-3"

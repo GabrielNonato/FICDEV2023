@@ -1,5 +1,6 @@
 const { ReservaModel } = require('../../models/reserva-model');
 const { HttpHelper } = require('../../utils/http-helper');
+const { Op } = require("sequelize");
 
 class UpdateReservaController {
     async update(request, response) {
@@ -13,6 +14,24 @@ class UpdateReservaController {
             if (!dia) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!horarioInicio) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!horarioFim) return httpHelper.badRequest('Parâmetros inválidos!');
+
+            const verificarReservas = await ReservaModel.findAll({
+                where: {
+                    dia: {
+                        [Op.eq]: dia
+                    }
+                }
+            });
+            
+            let tamanho = verificarReservas.length
+            
+            for(let i = 0;i<tamanho;i++){
+                if(verificarReservas[i].SalaId == SalaId && verificarReservas[i].id!=id){
+                    if(horarioFim > verificarReservas[i].horarioInicio && horarioInicio<verificarReservas[i].horarioFim ){
+                        return httpHelper.badRequest('Horário já reservado!');
+                    }
+                }
+            }    
 
             const reservaExists = await ReservaModel.findByPk(id);
             

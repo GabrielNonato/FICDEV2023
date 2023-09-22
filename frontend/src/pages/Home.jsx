@@ -1,7 +1,7 @@
 // import { Button } from "react-bootstrap";
 // import { Link } from "react-router-dom";
 import Sidebar from '../components/Sidebar'
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import Dashboard from '../components/Dashboard'
 
 export function Home() {
@@ -12,7 +12,7 @@ export function Home() {
                 <Sidebar/>
             </div>
             <div className="col">
-                <Navbar />
+                {/* <Navbar /> */}
                 <Dashboard/>
             </div>
         </div>
@@ -21,14 +21,14 @@ export function Home() {
 }
 
  // <div className="text-center mt-5">
-        <div className="d-flex">
-            <div className="w-auto">
-                <Sidebar/>
-            </div>
-            <div className="col">
-                <Navbar />
-            </div>
-        </div>
+        // <div className="d-flex">
+        //     <div className="w-auto">
+        //         <Sidebar/>
+        //     </div>
+        //     <div className="col">
+        //         <Navbar />
+        //     </div>
+        // </div>
             // {/* <p>Selecione a opcao desejada</p>
             // <Link to="/perfil">
             //     <Button type="submit">Perfil</Button>

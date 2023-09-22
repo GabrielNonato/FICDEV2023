@@ -42,7 +42,7 @@ export function Reserva(props) {
                 <Card.Text><strong>Horario fim: </strong>{props.reserva.horarioFim}</Card.Text>
 
                 <Row xs="auto" className="d-flex justify-content-end">
-                    <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>
+                    <Button variant="secondary" onClick={() => setIsUpdated(    )}>Editar</Button>
                     <Button
                         variant="outline-danger"
                         className="ms-3"
@@ -100,14 +100,14 @@ export function Reserva(props) {
                             {...register('horarioInicio')}
                         >
                             <option disabled>Clique para selecionar</option>
-                            <option value='07:00'>07:00</option>
-                            <option value='09:00'>09:00</option>
-                            <option value='11:00'>11:00</option>
-                            <option value='13:00'>13:00</option>
-                            <option value='15:00'>15:00</option>
-                            <option value='17:00'>17:00</option>
-                            <option value='19:00'>19:00</option>
-                            <option value='21:00'>21:00</option>
+                            <option value='07:00:00'>07:00</option>
+                            <option value='09:00:00'>09:00</option>
+                            <option value='11:00:00'>11:00</option>
+                            <option value='13:00:00'>13:00</option>
+                            <option value='15:00:00'>15:00</option>
+                            <option value='17:00:00'>17:00</option>
+                            <option value='19:00:00'>19:00</option>
+                            <option value='21:00:00'>21:00</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group controlId="formHorarioFim">
@@ -117,14 +117,14 @@ export function Reserva(props) {
                             {...register('horarioFim')}
                         >
                             <option disabled>Clique para selecionar</option>
-                            <option value='09:00'>09:00</option>
-                            <option value='11:00'>11:00</option>
-                            <option value='13:00'>13:00</option>
-                            <option value='15:00'>15:00</option>
-                            <option value='17:00'>17:00</option>
-                            <option value='19:00'>19:00</option>
-                            <option value='21:00'>21:00</option>
-                            <option value='23:00'>07:00</option>
+                            <option value='09:00:00'>09:00</option>
+                            <option value='11:00:00'>11:00</option>
+                            <option value='13:00:00'>13:00</option>
+                            <option value='15:00:00'>15:00</option>
+                            <option value='17:00:00'>17:00</option>
+                            <option value='19:00:00'>19:00</option>
+                            <option value='21:00:00'>21:00</option>
+                            <option value='23:00:00'>07:00</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group controlId="formIdSala">

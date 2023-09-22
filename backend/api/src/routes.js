@@ -1,5 +1,9 @@
 const { Router } = require('express');
 
+const getQuantidadeSalas = require('./controllers/get-estatistica-controller/get-total-salas-controller')
+const getQuantidadeReservas = require('./controllers/get-estatistica-controller/get-total-reservas-controller')
+const getReservaAnoController = require('./controllers/get-estatistica-controller/get-reservas-no-ano-controller')
+
 const SignupUsuarioController = require('./controllers/usuario-controller/signup-usuario-controller');
 const SigninUsuarioController = require('./controllers/usuario-controller/signin-usuario-controller');
 const DeleteUsuarioController = require('./controllers/usuario-controller/delete-usuario-controller');
@@ -42,5 +46,10 @@ routes.put('/reserva/update/:id', authMiddleware ,UpdateReservaController.update
 routes.delete('/reserva/delete/:id', authMiddleware , DeleteReservaController.delete);
 routes.get('/reservas', authMiddleware, GetReservaController.getAll);
 routes.get('/reserva/filtro/:dia',authMiddleware,GetFiltroReservaController.getDia);
+
+//Graficos
+routes.get('/sala/quantidade', authMiddleware, getQuantidadeSalas.getQuantidadeSalas)
+routes.get('/reserva/quantidade', authMiddleware, getQuantidadeReservas.getQuantidadeReservas)
+routes.get('/reserva/ano', authMiddleware, getReservaAnoController.getAnoReservas)
 
 module.exports = { routes };

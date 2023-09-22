@@ -15,6 +15,7 @@ class UpdateReservaController {
             if (!horarioFim) return httpHelper.badRequest('Parâmetros inválidos!');
 
             const reservaExists = await ReservaModel.findByPk(id);
+            
             if (!reservaExists) return httpHelper.notFound('Reserva não encontrada');
             await ReservaModel.update({
                 nomeResponsavel, dia, horarioInicio,horarioFim,SalaId

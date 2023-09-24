@@ -3,6 +3,7 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { salasAnalisadas } from '../services/sala-services'
 import { quantidadeAnoReservas, totalReservas } from '../services/reserva-services';
 import '../style.css'
+import GraficoBarraTurno from '../graficos/turno-reserva-barra'
 
 
 const quantidadeSalas = await salasAnalisadas()
@@ -35,6 +36,11 @@ export function Dashboard() {
                             <p className='TextoDash'><strong>Reservas já feitas</strong></p>
                             <h2>{totalDeReservas.data}</h2>
                         </div>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-12 col-md-8 p-3'>
+                        <GraficoBarraTurno/>
                     </div>
                 </div>
             </div>

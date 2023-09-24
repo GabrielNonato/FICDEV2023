@@ -1,9 +1,11 @@
 const { Router } = require('express');
 
-const getQuantidadeSalas = require('./controllers/get-estatistica-controller/get-total-salas-controller')
-const getQuantidadeReservas = require('./controllers/get-estatistica-controller/get-total-reservas-controller')
-const getReservaAnoController = require('./controllers/get-estatistica-controller/get-reservas-no-ano-controller')
+const GetQuantidadeSalas = require('./controllers/get-estatistica-controller/get-total-salas-controller')
+const GetQuantidadeReservas = require('./controllers/get-estatistica-controller/get-total-reservas-controller')
+const GetReservaAnoController = require('./controllers/get-estatistica-controller/get-reservas-no-ano-controller')
 const GetReservaMatutinoController = require('./controllers/get-estatistica-controller/get-horario-matutino-controller')
+const GetReservaVespertinoController = require('./controllers/get-estatistica-controller/get-horario-vespertino-controller')
+const GetReservaNoturnoController = require('./controllers/get-estatistica-controller/get-horario-noturno-controller')
 
 const SignupUsuarioController = require('./controllers/usuario-controller/signup-usuario-controller');
 const SigninUsuarioController = require('./controllers/usuario-controller/signin-usuario-controller');
@@ -49,9 +51,12 @@ routes.get('/reservas', authMiddleware, GetReservaController.getAll);
 routes.get('/reserva/filtro/:dia',authMiddleware,GetFiltroReservaController.getDia);
 
 //Graficos
-routes.get('/sala/quantidade', authMiddleware, getQuantidadeSalas.getQuantidadeSalas)
-routes.get('/reserva/quantidade', authMiddleware, getQuantidadeReservas.getQuantidadeReservas)
-routes.get('/reserva/ano', authMiddleware, getReservaAnoController.getAnoReservas)
+routes.get('/sala/quantidade',  GetQuantidadeSalas.getQuantidadeSalas)
+routes.get('/reserva/quantidade',  GetQuantidadeReservas.getQuantidadeReservas)
+routes.get('/reserva/ano',  GetReservaAnoController.getAnoReservas)
 routes.get('/reserva/matutino', authMiddleware, GetReservaMatutinoController.getReservaMatutino)
+routes.get('/reserva/vespertirno', authMiddleware, GetReservaVespertinoController.getReservaVespertino)
+routes.get('/reserva/noturno', authMiddleware, GetReservaNoturnoController.getReservaNoturno)
+
 
 module.exports = { routes };

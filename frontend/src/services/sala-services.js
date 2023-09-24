@@ -57,3 +57,13 @@ export async function createSala(data) {
     });
     return result;
 }
+
+export async function salasAnalisadas(){
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/sala/quantidade`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}

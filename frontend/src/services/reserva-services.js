@@ -1,14 +1,26 @@
 import { api } from "./api";
 
-// export async function getFiltroReservas(data) {
-//     const accessToken = sessionStorage.getItem('token');
-//     const result = await api.get(`/reserva/filtro/${data.filtroReserva}`, {
-//         headers: {
-//             'Authorization': `Bearer ${JSON.parse(accessToken)}`
-//         }
-//     });
-//     return result;
-// }
+export async function quantidadeAnoReservas() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/ano`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function totalReservas() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/quantidade`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+
 
 export async function getFiltroReservas(data) {
     const accessToken = sessionStorage.getItem('token');

@@ -2,19 +2,15 @@ const { HttpHelper } = require('../../utils/http-helper');
 const { ReservaModel } = require('../../models/reserva-model');
 const { Op } = require("sequelize");
 
-class GetAnoReservaController {
+class GetReservaNoturnoController {
        
-    async getAnoReservas(request, response) {
+    async getReservaNoturno(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const dataAtual = new Date()
-            const dataAno = dataAtual.getFullYear();
-            const dataComparada = dataAno+'-01-01'
-
             const reservas = await ReservaModel.count({
                 where: {
-                    dia: {
-                        [Op.gte]: dataComparada
+                    horarioFim: {
+                        [Op.lte]: '12:00:00'
                     }
                 }
             });
@@ -26,4 +22,4 @@ class GetAnoReservaController {
     }
 }
 
-module.exports = new GetAnoReservaController();
+module.exports = new GetReservaNoturnoController();

@@ -3,6 +3,7 @@ const { Router } = require('express');
 const getQuantidadeSalas = require('./controllers/get-estatistica-controller/get-total-salas-controller')
 const getQuantidadeReservas = require('./controllers/get-estatistica-controller/get-total-reservas-controller')
 const getReservaAnoController = require('./controllers/get-estatistica-controller/get-reservas-no-ano-controller')
+const GetReservaMatutinoController = require('./controllers/get-estatistica-controller/get-horario-matutino-controller')
 
 const SignupUsuarioController = require('./controllers/usuario-controller/signup-usuario-controller');
 const SigninUsuarioController = require('./controllers/usuario-controller/signin-usuario-controller');
@@ -51,5 +52,6 @@ routes.get('/reserva/filtro/:dia',authMiddleware,GetFiltroReservaController.getD
 routes.get('/sala/quantidade', authMiddleware, getQuantidadeSalas.getQuantidadeSalas)
 routes.get('/reserva/quantidade', authMiddleware, getQuantidadeReservas.getQuantidadeReservas)
 routes.get('/reserva/ano', authMiddleware, getReservaAnoController.getAnoReservas)
+routes.get('/reserva/matutino', authMiddleware, GetReservaMatutinoController.getReservaMatutino)
 
 module.exports = { routes };

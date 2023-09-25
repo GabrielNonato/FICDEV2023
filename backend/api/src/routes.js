@@ -48,15 +48,15 @@ routes.post('/reserva/create', authMiddleware, CreateReservaController.create);
 routes.put('/reserva/update/:id', authMiddleware ,UpdateReservaController.update);
 routes.delete('/reserva/delete/:id', authMiddleware , DeleteReservaController.delete);
 routes.get('/reservas', authMiddleware, GetReservaController.getAll);
-routes.get('/reserva/filtro/:dia',authMiddleware,GetFiltroReservaController.getDia);
+routes.get('/reserva/filtro/:dia', GetFiltroReservaController.getDia);
 
 //Graficos
-routes.get('/sala/quantidade',  GetQuantidadeSalas.getQuantidadeSalas)
-routes.get('/reserva/quantidade',  GetQuantidadeReservas.getQuantidadeReservas)
-routes.get('/reserva/ano',  GetReservaAnoController.getAnoReservas)
-routes.get('/reserva/matutino', GetReservaMatutinoController.getReservaMatutino)
-routes.get('/reserva/vespertino', GetReservaVespertinoController.getReservaVespertino)
-routes.get('/reserva/noturno', GetReservaNoturnoController.getReservaNoturno)
+routes.get('/sala/quantidade', authMiddleware,   GetQuantidadeSalas.getQuantidadeSalas)
+routes.get('/reserva/quantidade',authMiddleware,   GetQuantidadeReservas.getQuantidadeReservas)
+routes.get('/reserva/ano',authMiddleware,   GetReservaAnoController.getAnoReservas)
+routes.get('/reserva/matutino',authMiddleware,  GetReservaMatutinoController.getReservaMatutino)
+routes.get('/reserva/vespertino',authMiddleware,  GetReservaVespertinoController.getReservaVespertino)
+routes.get('/reserva/noturno',authMiddleware,  GetReservaNoturnoController.getReservaNoturno)
 
 
 module.exports = { routes };

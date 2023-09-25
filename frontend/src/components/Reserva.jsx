@@ -31,6 +31,8 @@ export function Reserva(props) {
         }
     }
 
+    let nome
+    salas.filter((sala) => sala.id === props.reserva.SalaId? nome=sala.nome: 'Sala não listada' )
 
     return (
         <>
@@ -40,6 +42,7 @@ export function Reserva(props) {
                 <Card.Text><strong>Nome do Responsável: </strong>{props.reserva.nomeResponsavel}</Card.Text>
                 <Card.Text><strong>Horario inicio: </strong>{props.reserva.horarioInicio}</Card.Text>
                 <Card.Text><strong>Horario fim: </strong>{props.reserva.horarioFim}</Card.Text>
+                <Card.Text><strong>Sala reservada: </strong>{nome}</Card.Text>
 
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>

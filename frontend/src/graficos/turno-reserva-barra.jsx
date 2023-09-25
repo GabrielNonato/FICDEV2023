@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
+// eslint-disable-next-line
 import Chart from 'chart.js/auto'
+
 import { Bar } from 'react-chartjs-2'
 
 import { getReservaMatutino, getReservaVespertino, getReservaNoturno } from '../services/reserva-services'

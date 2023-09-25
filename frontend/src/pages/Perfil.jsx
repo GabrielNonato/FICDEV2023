@@ -65,6 +65,13 @@ export function Perfil(props) {
                         navigate('/home');
                     }}>Voltar</Button>
             </Col>
+            <Col>
+                    <Button variant="outline-secondary" onClick={() => {
+                        sessionStorage.setItem('token', null)
+                        sessionStorage.setItem('idUsuario', null)
+                        navigate('/');
+                    }}>LogOut</Button>
+            </Col>
             <Card className="mb-3 p-3 bg-light">
                 <Card.Title><strong>Nome: </strong>{usuario.nome}</Card.Title>
                 <Card.Text><strong>Email: </strong>{usuario.email}</Card.Text>

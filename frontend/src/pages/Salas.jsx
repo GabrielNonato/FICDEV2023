@@ -1,11 +1,12 @@
-import { Container, Col, Modal, Form, Button, Row } from "react-bootstrap";
+import { Col, Modal, Form, Button, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 
 import { Sala } from "../components/Sala";
-import { Header } from "../components/Header";
+
 import { Input } from '../components/Input';
+import Sidebar from '../components/Sidebar'
 
 import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "../services/sala-services"
 
@@ -80,107 +81,112 @@ export function Salas() {
     }
 
     return (
-        <Container fluid>
-            <Header title="Salas" />
-            <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Col md='10'>
-                    <Button onClick={() => setIsCreated(true)}>Adicionar nova sala</Button>
-                </Col>
-                <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        navigate('/home');
-                    }}>Voltar</Button>
-                </Col>
-            </Row>
-            <Row className="w-50 m-auto mb-2">
-                <Col md='8'>
-                    <Form.Group className="mb-3">
-                        <Form.Control
-                            type="number"
-                            placeholder="Filtrar por capacidade"
-                            value={capacidade}
-                            onChange={(e) => setCapacidade(e.target.value)}
-                        />
-                    </Form.Group>
-                </Col>
-                <Col md='2'>
-                    <Button onClick={filtrar}>Filtrar</Button>
-                </Col>
-            </Row>
-            <Col className="w-50 m-auto">
-                {salas && salas.length > 0
-                    ? salas.map((sala, index) => (
-                        <Sala
-                            key={index}
-                            sala={sala}
-                            removeSala={async () => await removeSala(sala.id)}
-                            editSala={editSala}
-                        />
-                    ))
-                    : <p className="text-center">Não existe nenhuma sala cadastrada!</p>}
-            </Col>
-            <Modal show={isCreated} onHide={() => setIsCreated(false)}>
-                <Modal.Header>
-                    <Modal.Title>Adicionar nova sala</Modal.Title>
-                </Modal.Header>
-                <Form
-                    noValidate
-                    validated={!errors}
-                    onSubmit={handleSubmit(addSala)}
-                    autoComplete='off'
-                >
-                    <Modal.Body>
-                        <Input
-                            className="mb-3"
-                            controlId="formGroupNomeSala"
-                            label='Nome da sala'
-                            type='text'
-                            name='nomeSala'
-                            errors={errors.nomeSala}
-                            placeholder='Insira o nome da sala'
-                            validations={register('nomeSala', {
-                                required: {
-                                    value: true,
-                                    message: 'Nome da sala é obrigatório.'
-                                }
-                            })}
-                        />
-                        <Input
-                            className="mb-3"
-                            controlId="formGroupCapacidadeSala"
-                            label='Capacidade da sala'
-                            type='text'
-                            name='capacidadeSala'
-                            errors={errors.capacidadeSala}
-                            placeholder='Insira a capacidade da sala'
-                            validations={register('capacidadeSala', {
-                                required: {
-                                    value: true,
-                                    message: 'Capacidade da sala é obrigatório.'
-                                },
-                            })}
-                        /><Input
-                        className="mb-3"
-                        controlId="formGroupNomeSala"
-                        label='Departamento da sala'
-                        type='text'
-                        name='departamentoSala'
-                        errors={errors.departamentoSala}
-                        placeholder='Insira o departamento da sala'
-                        validations={register('departamentoSala', {
-                            required: {
-                                value: true,
-                                message: 'Departamento da sala é obrigatório.'
-                            }
-                        })}
-                    />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit" disabled={!isValid}>Criar</Button>
-                        <Button variant="secondary" onClick={() => setIsCreated(false)}>Fechar</Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
-        </Container>
+        <div className="d-flex">
+                <div className="w-auto">
+                    <Sidebar/>
+                </div>
+                <div className="col">
+            
+                    <Row className="w-50 m-auto mb-5 mt-5 ">
+                        <Col md='10'>
+                            <Button onClick={() => setIsCreated(true)}>Adicionar nova sala</Button>
+                        </Col>
+                        <Col>
+                            <Button variant="outline-secondary" onClick={() => {
+                                navigate('/home');
+                            }}>Voltar</Button>
+                        </Col>
+                    </Row>
+                    <Row className="w-50 m-auto mb-2">
+                        <Col md='8'>
+                            <Form.Group className="mb-3">
+                                <Form.Control
+                                    type="number"
+                                    placeholder="Filtrar por capacidade"
+                                    value={capacidade}
+                                    onChange={(e) => setCapacidade(e.target.value)}
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col md='2'>
+                            <Button onClick={filtrar}>Filtrar</Button>
+                        </Col>
+                    </Row>
+                    <Col className="w-50 m-auto">
+                        {salas && salas.length > 0
+                            ? salas.map((sala, index) => (
+                                <Sala
+                                    key={index}
+                                    sala={sala}
+                                    removeSala={async () => await removeSala(sala.id)}
+                                    editSala={editSala}
+                                />
+                            ))
+                            : <p className="text-center">Não existe nenhuma sala cadastrada!</p>}
+                    </Col>
+                    <Modal show={isCreated} onHide={() => setIsCreated(false)}>
+                        <Modal.Header>
+                            <Modal.Title>Adicionar nova sala</Modal.Title>
+                        </Modal.Header>
+                        <Form
+                            noValidate
+                            validated={!errors}
+                            onSubmit={handleSubmit(addSala)}
+                            autoComplete='off'
+                        >
+                            <Modal.Body>
+                                <Input
+                                    className="mb-3"
+                                    controlId="formGroupNomeSala"
+                                    label='Nome da sala'
+                                    type='text'
+                                    name='nomeSala'
+                                    errors={errors.nomeSala}
+                                    placeholder='Insira o nome da sala'
+                                    validations={register('nomeSala', {
+                                        required: {
+                                            value: true,
+                                            message: 'Nome da sala é obrigatório.'
+                                        }
+                                    })}
+                                />
+                                <Input
+                                    className="mb-3"
+                                    controlId="formGroupCapacidadeSala"
+                                    label='Capacidade da sala'
+                                    type='text'
+                                    name='capacidadeSala'
+                                    errors={errors.capacidadeSala}
+                                    placeholder='Insira a capacidade da sala'
+                                    validations={register('capacidadeSala', {
+                                        required: {
+                                            value: true,
+                                            message: 'Capacidade da sala é obrigatório.'
+                                        },
+                                    })}
+                                /><Input
+                                className="mb-3"
+                                controlId="formGroupNomeSala"
+                                label='Departamento da sala'
+                                type='text'
+                                name='departamentoSala'
+                                errors={errors.departamentoSala}
+                                placeholder='Insira o departamento da sala'
+                                validations={register('departamentoSala', {
+                                    required: {
+                                        value: true,
+                                        message: 'Departamento da sala é obrigatório.'
+                                    }
+                                })}
+                            />
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="primary" type="submit" disabled={!isValid}>Criar</Button>
+                                <Button variant="secondary" onClick={() => setIsCreated(false)}>Fechar</Button>
+                            </Modal.Footer>
+                        </Form>
+                    </Modal>
+                </div>
+        </div>
     );
 }

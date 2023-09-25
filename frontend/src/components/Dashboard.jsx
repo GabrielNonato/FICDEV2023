@@ -5,6 +5,7 @@ import { quantidadeAnoReservas, totalReservas } from '../services/reserva-servic
 import '../style.css'
 import GraficoBarraTurno from '../graficos/turno-reserva-barra'
 import React, { useEffect, useState } from 'react'
+import GraficoLinhaTrimestre from '../graficos/trimestre-reserva-linha';
 
 
 
@@ -52,7 +53,7 @@ export function Dashboard() {
                     <div className="d-flex justify-content-around align-items-center col p-3 bg-white border border-secundary shadow-sm">
                         <i className="bi bi-calendar2-check-fill fs-1 text-warning"></i>
                         <div>
-                            <p className='TextoDash'><strong>Reservas já feitas</strong></p>
+                            <p className='TextoDash'><strong>Reservas (Todos os tempos)</strong></p>
                             <h2>{quantidaReservaTotal}</h2>
                         </div>
                     </div>
@@ -62,6 +63,11 @@ export function Dashboard() {
             <div className='row'>
                 <div className='col-12 col-md-8 p-3'>
                     <GraficoBarraTurno/>
+                </div>                    
+            </div>
+            <div className='row'>
+                <div className='col-12 col-md-8 p-3'>
+                    <GraficoLinhaTrimestre/>
                 </div>                    
             </div>
        </div>

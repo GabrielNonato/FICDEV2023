@@ -32,14 +32,33 @@ function GraficoBarraTurno() {
             <Chart
                 type='bar'
                 width='100%'
-                height={550}
-                series={[turnoMatutino, turnoVespertino, turnoNoturno]}
+                height={500}
+                series={[
+                    {
+                        name: 'Turnos',
+                        data: [turnoMatutino, turnoVespertino, turnoNoturno]
+                    },
+                ]}
                 options={{
-                    labels: ['Leito', 'Cirúrgica'],
+                    labels: ['Matutino', 'Vespertino','Noturno'],
                     title: {
-                        text: "Gráfico de Tipos de Salas"
-                    }
+                        text: "Quantidade de reservas por turno",
+                    },
+                    plotOptions: {
+                        bar: {
+                            distributed: true, // this line is mandatory
+                            horizontal: false,
+                            barHeight: '85%',
+                        },
+                    },
+                    colors: [ // this array contains different color code for each data
+                        "#33b2df",
+                        "#546E7A",
+                        "#d4526e",
+                    ],
+                    
                 }}
+                
             />
 
         </div>

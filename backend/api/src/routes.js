@@ -7,6 +7,14 @@ const GetReservaMatutinoController = require('./controllers/get-estatistica-cont
 const GetReservaVespertinoController = require('./controllers/get-estatistica-controller/get-horario-vespertino-controller')
 const GetReservaNoturnoController = require('./controllers/get-estatistica-controller/get-horario-noturno-controller')
 
+
+const GetTrimestreUmReservaController = require('./controllers/get-estatistica-controller/get-trimestre-um-controller')
+const GetTrimestreDoisReservaController = require('./controllers/get-estatistica-controller/get-trimestre-dois-controller')
+const GetTrimestreTresReservaController = require('./controllers/get-estatistica-controller/get-trimestre-tres-controller')
+const GetTrimestreQuatroReservaController = require('./controllers/get-estatistica-controller/get-trimestre-quatro-controller')
+
+
+
 const SignupUsuarioController = require('./controllers/usuario-controller/signup-usuario-controller');
 const SigninUsuarioController = require('./controllers/usuario-controller/signin-usuario-controller');
 const DeleteUsuarioController = require('./controllers/usuario-controller/delete-usuario-controller');
@@ -58,5 +66,9 @@ routes.get('/reserva/matutino',authMiddleware,  GetReservaMatutinoController.get
 routes.get('/reserva/vespertino',authMiddleware,  GetReservaVespertinoController.getReservaVespertino)
 routes.get('/reserva/noturno',authMiddleware,  GetReservaNoturnoController.getReservaNoturno)
 
+routes.get('/reserva/trimestre/um', authMiddleware, GetTrimestreUmReservaController.getTrimestreUmReservas)
+routes.get('/reserva/trimestre/dois', authMiddleware, GetTrimestreDoisReservaController.getTrimestreDoisReservas)
+routes.get('/reserva/trimestre/tres', authMiddleware, GetTrimestreTresReservaController.getTrimestreTresReservas)
+routes.get('/reserva/trimestre/quatro', authMiddleware, GetTrimestreQuatroReservaController.getTrimestreQuatroReservas)
 
 module.exports = { routes };

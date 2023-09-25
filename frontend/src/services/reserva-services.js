@@ -113,3 +113,44 @@ export async function getReservaNoturno() {
     });
     return result;
 }
+
+export async function trimestreUm() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/trimestre/um`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function trimestreDois() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/trimestre/dois`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function trimestreTres() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/trimestre/tres`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function trimestreQuatro() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/reserva/trimestre/quatro`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+

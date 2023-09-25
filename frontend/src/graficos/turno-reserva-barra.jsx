@@ -2,18 +2,27 @@ import React from 'react'
 import Chart from 'chart.js/auto'
 import { Bar } from 'react-chartjs-2'
 
-const testandoDash = ['N1']
+import { getReservaMatutino, getReservaVespertino, getReservaNoturno } from '../services/reserva-services'
+
+const matutino = await getReservaMatutino()
+const vespertino = await getReservaVespertino()
+const noturno = await getReservaNoturno()
+
+
+const testandoDash = ['MATUTINO','VESPERTINO','NOTURNO']
+
 
 const data = {
     labels: testandoDash,
     datasets: [
         {
             label:'meu primeiro dash',
-            backgroundColor: 'aqua',
+            backgroundColor: 'aqua',    
             borderColor:'black',
-            data:[1,2,4],
+            data:[matutino,vespertino,noturno],
         },
     ],
+    
 };
 
 function GraficoBarraTurno(){

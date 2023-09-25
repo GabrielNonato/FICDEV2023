@@ -83,3 +83,33 @@ export async function createReserva(data) {
     });
     return result;
 }
+
+export async function getReservaMatutino() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get('/reserva/matutino', {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function getReservaVespertino() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get('/reserva/vespertino', {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function getReservaNoturno() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get('/reserva/noturno', {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}

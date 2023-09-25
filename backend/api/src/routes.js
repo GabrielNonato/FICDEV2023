@@ -54,9 +54,9 @@ routes.get('/reserva/filtro/:dia',authMiddleware,GetFiltroReservaController.getD
 routes.get('/sala/quantidade',  GetQuantidadeSalas.getQuantidadeSalas)
 routes.get('/reserva/quantidade',  GetQuantidadeReservas.getQuantidadeReservas)
 routes.get('/reserva/ano',  GetReservaAnoController.getAnoReservas)
-routes.get('/reserva/matutino', authMiddleware, GetReservaMatutinoController.getReservaMatutino)
-routes.get('/reserva/vespertirno', authMiddleware, GetReservaVespertinoController.getReservaVespertino)
-routes.get('/reserva/noturno', authMiddleware, GetReservaNoturnoController.getReservaNoturno)
+routes.get('/reserva/matutino', GetReservaMatutinoController.getReservaMatutino)
+routes.get('/reserva/vespertino', GetReservaVespertinoController.getReservaVespertino)
+routes.get('/reserva/noturno', GetReservaNoturnoController.getReservaNoturno)
 
 
 module.exports = { routes };

@@ -16,10 +16,10 @@ const data = {
     labels: testandoDash,
     datasets: [
         {
-            label:'meu primeiro dash',
-            backgroundColor: 'aqua',    
+            label:'Quantidade',
+            backgroundColor: ['rgb(187,84,155)','rgb(235,47,60)','rgb(110,50,210)'],    
             borderColor:'black',
-            data:[matutino,vespertino,noturno],
+            data:[matutino.data,vespertino.data,noturno.data],
         },
     ],
     

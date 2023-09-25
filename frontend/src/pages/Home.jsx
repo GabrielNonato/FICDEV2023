@@ -8,6 +8,7 @@ import Dashboard from '../components/Dashboard'
 export function Home() {
 
     return (
+        
         <div className="d-flex">
             <div className="w-auto">
                 <Sidebar/>

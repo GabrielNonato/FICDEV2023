@@ -42,6 +42,7 @@ export function Dashboard() {
                     <div className='col-12 col-md-8 p-3'>
                         <GraficoBarraTurno/>
                     </div>
+                    
                 </div>
             </div>
        </div>

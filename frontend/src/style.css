@@ -1,40 +1,45 @@
-.removeDestaque {
-    text-decoration: none;
-    color: #ffffff
+.ativo {
+  background-color: rgb(117, 117, 117);
+  border-radius: 5px;
+  color: white;
 }
 
-.sidebar ul li a:hover{
-    background-color: rgb(117,117,117);
-    border-radius: 5px;
+.TextoDash {
+  font-size: 25px;
 }
 
-.sidebar ul li a:hover{
-    color: rgb(255, 255, 255);
-}
-
-.ativo{
-    background-color: rgb(117,117,117);
-    border-radius: 5px;
-    color:white;
-}
-
-.TextoDash{
-    font-size: 25px;
-}
-
-.aumentarTamanhoNav{
-  font-size:20px;
+.aumentarTamanhoNav {
+  font-size: 20px;
 }
 
 
 .custom-navbar {
-    background-color: #292929; 
-  }
-  
-  .custom-navbar .navbar-nav .nav-link {
-    color: #ffffff;
-  }
-  
-  .custom-navbar .navbar-nav .nav-link:hover {
-    color: #b3c2d1; 
-  }
+  background-color: #292929;
+}
+
+.custom-navbar .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.custom-navbar .navbar-nav .nav-link:hover {
+  color: #b3c2d1;
+}
+
+
+.box-area{
+  width: 930px;
+}
+/*------------ Right box ------------*/
+.right-box{
+  padding: 40px 30px 40px 40px;
+}
+/*------------ Custom Placeholder ------------*/
+::placeholder{
+  font-size: 16px;
+}
+.rounded-4{
+  border-radius: 20px;
+}
+.rounded-5{
+  border-radius: 30px;
+}

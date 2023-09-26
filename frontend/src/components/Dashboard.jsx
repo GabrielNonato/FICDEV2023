@@ -1,6 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-import { Container, Row, Col, Card } from "react-bootstrap";
+import {  Row, Col, Card } from "react-bootstrap";
 
 import { salasAnalisadas } from '../services/sala-services'
 import { quantidadeAnoReservas, totalReservas } from '../services/reserva-services';

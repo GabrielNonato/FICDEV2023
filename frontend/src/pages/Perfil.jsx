@@ -1,4 +1,4 @@
-import { Container, Modal, Card, Button, Row, Form, Col} from "react-bootstrap";
+import { Container, Modal, Card, Button, Row, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -9,8 +9,29 @@ import { deleteUsuario, getUsuario, updateUsuario } from "../services/usuario-se
 
 export function Perfil(props) {
     const [usuario, setUsuario] = useState([]);
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isValid
+        }
+    } = useForm({
+        mode: 'all'
+    });
+    const {
+
+
+        formState: {
+            isValid: isValid2
+        }
+    } = useForm({
+        mode: 'all'
+    });
+
     const [isUpdated, setIsUpdated] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
+
     const navigate = useNavigate();
 
     const id = sessionStorage.getItem('idUsuario')
@@ -69,12 +90,22 @@ export function Perfil(props) {
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={removeUsuario}
+                        onClick={()=>setIsDeleted(true)}
                     >
                         Apagar
                     </Button>
                 </Row>
             </Card>
+
+            <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
+                <Modal.Header>
+                    <Modal.Title>Deseja Deletar?</Modal.Title>
+                </Modal.Header>
+                    <Modal.Footer>
+                        <Button variant="danger" type="submit" onClick={removeUsuario} disabled={!isValid2}>Apagar</Button>
+                        <Button variant="secondary" onClick={() => setIsDeleted(false)}>Fechar</Button>
+                    </Modal.Footer>
+            </Modal>
            
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
@@ -140,13 +171,7 @@ export function Perfil(props) {
                     </Modal.Footer>
                 </Form>
             </Modal>
-            <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.setItem('token', null)
-                        sessionStorage.setItem('idUsuario', null)
-                        navigate('/');
-                    }}>LogOut</Button>
-            </Col>
+            
                 
         </Container>
     );

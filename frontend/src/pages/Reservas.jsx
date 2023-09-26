@@ -7,6 +7,8 @@ import { Reserva } from "../components/Reserva";
 import { Input } from '../components/Input';
 import { Header } from "../components/Header";
 
+import { ModalN2 } from "../components/ModalN2";
+
 import { createReserva, deleteReserva, getReservas, updateReserva, getFiltroReservas } from "../services/reserva-services"
 import { getSalas } from "../services/sala-services"
 
@@ -17,6 +19,7 @@ export function Reservas() {
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const navigate = useNavigate();
     const [dia, setDia] = useState("")
+    const [erroResultado, setErroResultado] = useState(null)
 
     useEffect(() => {
         findReservas();
@@ -53,9 +56,9 @@ export function Reservas() {
         }
     }
 
-    async function removeReserva(id) {
+    async function removeReserva(data) {
         try {
-            await deleteReserva(id);
+            await deleteReserva(data.id);
             await findReservas();
         } catch (error) {
             console.error(error);
@@ -68,7 +71,7 @@ export function Reservas() {
             setIsCreated(false);
             await findReservas();
         } catch (error) {
-            console.error(error);
+            setErroResultado(error);
         }
     }
 
@@ -91,6 +94,12 @@ export function Reservas() {
     return (
        
             <div className="d-flex">
+                <ModalN2
+                    show={erroResultado}
+                    title={erroResultado?.title}
+                    message={erroResultado?.message}
+                    handleClose={() => setErroResultado(null)}
+                />
                 <div className="col">
                 <NavbarComponent/>
                 <Header title="Reservas"/>
@@ -112,6 +121,10 @@ export function Reservas() {
                                 onChange={(e) => setDia(e.target.value)}
                             />
                         </Form.Group>
+                        <Button className='btn btn-danger btn-lg btn' 
+                                onClick={() => findReservas()}
+                                    ><strong className="aumentarTamanhoNav">Limpar Filtro</strong>
+                            </Button>
                     </Col>
                     <Col md='2'>
                         <Button className='btn btn-success' onClick={filtrar}>Filtrar</Button>
@@ -123,7 +136,7 @@ export function Reservas() {
                             <Reserva
                                 key={index}
                                 reserva={reserva}
-                                removeReserva={async () => await removeReserva(reserva.id)}
+                                removeReserva={removeReserva}
                                 editReserva={editReserva}
                             />
                         ))
@@ -231,4 +244,3 @@ export function Reservas() {
             </div>
     );
 }
-

@@ -5,12 +5,38 @@ import { useForm } from "react-hook-form";
 import { Input } from "./Input";
 
 export function Sala(props) {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+
+    
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isValid
+        }
+    } = useForm({
+        mode: 'all'
+    });
+    const {
+
+        formState: {
+            isValid: isValid2
+        }
+    } = useForm({
+        mode: 'all'
+    });
+
     const [isUpdated, setIsUpdated] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
 
     async function editSala(data) {
         await props.editSala({ ...data, id: props.sala.id });
         setIsUpdated(false);
+    }
+
+    async function removeSala(data) {
+        await props.removeSala({ ...data, id: props.sala.id });
+        setIsDeleted(false);
     }
 
     return (
@@ -25,12 +51,23 @@ export function Sala(props) {
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={props.removeSala}
+                        onClick={()=>setIsDeleted(true)}
                     >
                         Apagar
                     </Button>
                 </Row>
             </Card>
+
+            <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
+                <Modal.Header>
+                    <Modal.Title>Deseja Deletar?</Modal.Title>
+                </Modal.Header>
+                    <Modal.Footer>
+                        <Button variant="danger" type="submit" onClick={removeSala} disabled={!isValid2}>Apagar</Button>
+                        <Button variant="secondary" onClick={() => setIsDeleted(false)}>Fechar</Button>
+                    </Modal.Footer>
+            </Modal>
+
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
                     <Modal.Title>Editar sala: {props.sala.nome}</Modal.Title>

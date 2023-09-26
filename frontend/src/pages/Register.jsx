@@ -76,7 +76,10 @@ export function Register() {
                                 value: true,
                                 message: 'Senha é obrigatória'
                             },
-                            minLength: 6
+                            minLength:{
+                                value:6,
+                                message: 'Minimo 6 caracteres'
+                            },
                         })}
                     />
                     <Input

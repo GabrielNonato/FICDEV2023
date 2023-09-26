@@ -7,13 +7,38 @@ import { getSalas } from "../services/sala-services"
 import { Input } from "./Input";
 
 export function Reserva(props) {
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const {
+        register,
+        handleSubmit,
+        formState: {
+            errors,
+            isValid
+        }
+    } = useForm({
+        mode: 'all'
+    });
+    const {
+
+        formState: {
+            isValid: isValid2
+        }
+    } = useForm({
+        mode: 'all'
+    });
+
     const [isUpdated, setIsUpdated] = useState(false);
+    const [isDeleted, setIsDeleted] = useState(false);
+
     const [salas, setSalas] = useState([])
     
     async function editReserva(data) {
         await props.editReserva({ ...data, id: props.reserva.id });
         setIsUpdated(false);
+    }
+
+    async function removeReserva(data) {
+        await props.removeReserva({ ...data, id: props.reserva.id });
+        setIsDeleted(false);
     }
 
 
@@ -49,12 +74,23 @@ export function Reserva(props) {
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={props.removeReserva}
+                        onClick={()=>setIsDeleted(true)}
                     >
                         Apagar
                     </Button>
                 </Row>
             </Card>
+
+            <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
+                <Modal.Header>
+                    <Modal.Title>Deseja Deletar?</Modal.Title>
+                </Modal.Header>
+                    <Modal.Footer>
+                        <Button variant="danger" type="submit" onClick={removeReserva} disabled={!isValid2}>Apagar</Button>
+                        <Button variant="secondary" onClick={() => setIsDeleted(false)}>Fechar</Button>
+                    </Modal.Footer>
+            </Modal>
+
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
                     <Modal.Title>Editar reserva: {props.reserva.dia}</Modal.Title>
@@ -74,6 +110,7 @@ export function Reserva(props) {
                             name='nomeResponsavel'
                             errors={errors.nomeResponsavel}
                             placeholder='Insira o nome do responsavel pela sala'
+                            defaultValue={props.reserva.nomeResponsavel}
                             validations={register('nomeResponsavel', {
                                 required: {
                                     value: true,
@@ -89,6 +126,7 @@ export function Reserva(props) {
                             name='diaReserva'
                             errors={errors.diaReserva}
                             placeholder='Insira o dia da reserva'
+                            defaultValue={props.reserva.dia}
                             validations={register('diaReserva', {
                                 required: {
                                     value: true,

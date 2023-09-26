@@ -48,9 +48,9 @@ export function Salas() {
         }
     }
 
-    async function removeSala(id) {
+    async function removeSala(data) {
         try {
-            await deleteSala(id);
+            await deleteSala(data.id);
             await findSalas();
         } catch (error) {
             console.error(error);
@@ -105,6 +105,10 @@ export function Salas() {
                                     onChange={(e) => setCapacidade(e.target.value)}
                                 />
                             </Form.Group>
+                            <Button className='btn btn-danger btn-lg btn' 
+                                onClick={() => findSalas()}
+                                    ><strong className="aumentarTamanhoNav">Limpar Filtro</strong>
+                            </Button>
                         </Col>
                         <Col md='2'>
                             <Button className="btn btn-success" onClick={filtrar}>Filtrar</Button>
@@ -116,7 +120,7 @@ export function Salas() {
                                 <Sala
                                     key={index}
                                     sala={sala}
-                                    removeSala={async () => await removeSala(sala.id)}
+                                    removeSala={removeSala}
                                     editSala={editSala}
                                 />
                             ))

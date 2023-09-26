@@ -2,45 +2,49 @@ import React, { useEffect, useState } from 'react'
 // eslint-disable-next-line
 import Chart from 'react-apexcharts'
 
-import { getReservaMatutino, getReservaVespertino, getReservaNoturno } from '../services/reserva-services'
+import { trimestreUm, trimestreDois, trimestreTres, trimestreQuatro } from '../services/reserva-services'
 
 function GraficoLinhaTrimestre() {
-    // const [turnoMatutino, setTurnoMatutino] = useState([]);
-    // const [turnoVespertino, setTurnoVespertino] = useState([]);
-    // const [turnoNoturno, setTurnoNoturno] = useState([]);
+    
+    const [triUm,setTriUm] = useState([])
+    const [triDois,setTriDois] = useState([])
+    const [triTres,setTriTres] = useState([])
+    const [triQuatro,setTriQuatro] = useState([])
 
-    // useEffect(() => {
-    //     const pegarDados = async () => {
-    //         try {
-    //             const matutino = await getReservaMatutino()
-    //             const vespertino = await getReservaVespertino()
-    //             const noturno = await getReservaNoturno()
+    useEffect(()=>{
+        const pegarDados = async() =>{
+            const um = await trimestreUm()
+            const dois = await trimestreDois()
+            const tres = await trimestreTres()
+            const quatro = await trimestreQuatro()
 
-    //             setTurnoMatutino(matutino.data)
-    //             setTurnoVespertino(vespertino.data)
-    //             setTurnoNoturno(noturno.data)
-    //         } catch (error) {
-    //             console.log(error)
-    //         }
-    //     }
-    //     pegarDados()
-    // })
+            setTriUm(um.data)
+            setTriDois(dois.data)
+            setTriTres(tres.data)
+            setTriQuatro(quatro.data)
+        }
+        pegarDados()
+    })
 
 
     return (
         <div className='bg-white border border-secondary'>
             <Chart
                 type='line'
-                width='100%' /* Use 100% de largura para tornar o gráfico responsivo */
-                height={550}
+                width='100%' 
+                height={500}
                 series={[{
-                    name:"produtos",
-                    data: [1, 9, 3, 4]
+                    name:'Trimestre',
+                    data: [triUm, triDois, triTres, triQuatro]
                 }]}
                 options={{
+                    labels:  ['Primeiro Trimestre','Segundo Trimestre', 'Terceiro Trimestre', 'Quarto Trimestre'],
                     stroke: {
                         curve: 'stepline',
-                      }
+                    },
+                    title: {
+                        text: "Reservas por trimestre",
+                    },
                 }}
             />
 
@@ -49,27 +53,3 @@ function GraficoLinhaTrimestre() {
 }
 
 export default GraficoLinhaTrimestre
-
-// const [trimestreUm, setTrimestreUm] = useState([]);
-// const [trimestreDois, setTrimestreDois] = useState([]);
-// const [trimestreTres, setTrimestreTres] = useState([]);
-// const [trimestreQuatro, setTrimestreQuatro] = useState([]);
-
-// useEffect(() => {
-//     const pegarDados = async () => {
-//         try {
-//             const um = await trimestreUm()
-//             const dois = await trimestreDois()
-//             const tres = await trimestreTres()
-//             const quatro = await trimestreQuatro()
-
-//             setTrimestreUm(um.data)
-//             setTrimestreDois(dois.data)
-//             setTrimestreTres(tres.data)
-//             setTrimestreQuatro(quatro.data)
-//         } catch (error) {
-//             console.log(error)
-//         }
-//     }
-//     pegarDados()
-// })

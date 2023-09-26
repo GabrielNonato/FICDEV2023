@@ -46,12 +46,12 @@ function GraficoBarraTurno() {
                     },
                     plotOptions: {
                         bar: {
-                            distributed: true, // this line is mandatory
+                            distributed: true, 
                             horizontal: false,
                             barHeight: '85%',
                         },
                     },
-                    colors: [ // this array contains different color code for each data
+                    colors: [ 
                         "#33b2df",
                         "#546E7A",
                         "#d4526e",

@@ -2,7 +2,7 @@ import {  Col, Modal, Form, Button, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
-import Sidebar from '../components/Sidebar'
+import {NavbarComponent} from '../components/Navbar'
 import { Reserva } from "../components/Reserva";
 import { Input } from '../components/Input';
 
@@ -90,11 +90,10 @@ export function Reservas() {
     return (
        
             <div className="d-flex">
-                <div className="w-auto">
-                    <Sidebar/>
-                </div>
                 <div className="col">
+                <NavbarComponent/>
                 <Row className="w-50 m-auto mb-5 mt-5 ">
+                    
                     <Col md='10'>
                         <Button onClick={() => setIsCreated(true)}>Reservar Sala</Button>
                     </Col>

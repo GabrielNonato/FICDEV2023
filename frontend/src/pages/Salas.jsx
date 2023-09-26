@@ -2,11 +2,11 @@ import { Col, Modal, Form, Button, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
-
+import {NavbarComponent} from '../components/Navbar'
 import { Sala } from "../components/Sala";
 
 import { Input } from '../components/Input';
-import Sidebar from '../components/Sidebar'
+
 
 import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "../services/sala-services"
 
@@ -82,19 +82,13 @@ export function Salas() {
 
     return (
         <div className="d-flex">
-                <div className="w-auto">
-                    <Sidebar/>
-                </div>
+                
                 <div className="col">
+                <NavbarComponent/>
             
                     <Row className="w-50 m-auto mb-5 mt-5 ">
-                        <Col md='10'>
-                            <Button onClick={() => setIsCreated(true)}>Adicionar nova sala</Button>
-                        </Col>
-                        <Col>
-                            <Button variant="outline-secondary" onClick={() => {
-                                navigate('/home');
-                            }}>Voltar</Button>
+                        <Col md='10' className="btn btn-primary btn-lg btn-block">
+                            <Button onClick={() => setIsCreated(true)}><strong className="aumentarTamanhoNav">Adicionar nova sala</strong></Button>
                         </Col>
                     </Row>
                     <Row className="w-50 m-auto mb-2">

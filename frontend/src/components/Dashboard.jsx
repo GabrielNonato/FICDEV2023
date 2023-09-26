@@ -1,5 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
+import { Container, Row, Col, Card } from "react-bootstrap";
+
 import { salasAnalisadas } from '../services/sala-services'
 import { quantidadeAnoReservas, totalReservas } from '../services/reserva-services';
 import '../style.css'
@@ -33,6 +35,7 @@ export function Dashboard() {
     })
     
     return (
+        <>
        <div className='p-5 bg-light'>
             <div className="container-fluid">
                 <div className="row">
@@ -59,18 +62,27 @@ export function Dashboard() {
                     </div>
                 </div>
                 
-            </div>
-            <div className='row'>
-                <div className='col-12 col-md-8 p-3'>
-                    <GraficoBarraTurno/>
-                </div>                    
-            </div>
-            <div className='row'>
-                <div className='col-12 col-md-8 p-3'>
-                    <GraficoLinhaTrimestre/>
-                </div>                    
-            </div>
+            </div>    
+           
        </div>
+       <Row>
+       <Col lg={6} md={12}> {/* Coluna de tamanho 6 para telas grandes (lg) e 12 para telas médias (md) */}
+           <Card className="custom-card">
+               <Card.Body>
+                    <GraficoBarraTurno/>
+               </Card.Body>
+           </Card>
+       </Col>
+
+       <Col lg={6} md={12}> 
+           <Card className="custom-card">
+               <Card.Body>
+                   <GraficoLinhaTrimestre/>
+               </Card.Body>
+           </Card>
+       </Col>
+   </Row>
+   </>
     );
 
 }

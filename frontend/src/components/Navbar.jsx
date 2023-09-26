@@ -1,29 +1,35 @@
-// import React from 'react'
-//         import { Link } from "react-router-dom";
-//         import '../style.css'
-        
-//         function Navbar(){
-//             return(
-//                 <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-//                     <div className='containerFluid'>
-//                         <a className="navbar-brand">Dashboard</a>
-//                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-//                             <span className="navbar-toggler-icon"></span>
-//                         </button>
-//                         <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-//                             <ul className="navbar-nav ms-auto mb-5 mb-lg-0">
-//                                 <li className="nav-item rounded border">
-//                                     <Link className='removeDestaque' to="/">
-//                                         <i className='bi bi-box-arrow-left'></i> Sair 
-//                                     </Link>
-//                                 </li>
-//                             </ul>    
-//                         </div>
-//                     </div>
-//                 </nav>
-//             )
-//         }
-        
-// export default Navbar
+import { Container, Nav, Navbar } from 'react-bootstrap';
+
+import '../style.css'; // Importe seu arquivo CSS
 
 
+export function NavbarComponent() {
+    return (
+        <Navbar collapseOnSelect expand="lg" className="custom-navbar">
+            <Container fluid>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="me-auto">
+                    <Nav.Link href="/home"><strong className='aumentarTamanhoNav'>Dashboard</strong></Nav.Link>
+                        <Nav.Link href="/sala"><strong className='aumentarTamanhoNav'>Salas</strong></Nav.Link>
+                        <Nav.Link href="/reserva"><strong className='aumentarTamanhoNav'>Reservas</strong></Nav.Link>
+                    </Nav>
+                    <Nav>
+                        <Navbar.Brand href="/perfil">
+                            <i className="bi bi-person fs-1 text-light"></i>
+                        </Navbar.Brand>
+                        <Navbar.Brand
+                            href="/"
+                            onClick={() => {
+                                sessionStorage.removeItem('token');
+                                sessionStorage.removeItem('idUsuario')
+                            }}
+                        >
+                            <i className="bi bi-box-arrow-in-left fs-1 text-light"></i>
+                        </Navbar.Brand>
+                    </Nav>
+                </Navbar.Collapse>
+            </Container>
+        </Navbar>
+    )
+}

@@ -7,6 +7,7 @@ import { Sala } from "../components/Sala";
 
 import { Input } from '../components/Input';
 
+import { Header } from "../components/Header";
 
 import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "../services/sala-services"
 
@@ -85,15 +86,18 @@ export function Salas() {
                 
                 <div className="col">
                 <NavbarComponent/>
-            
+                    <Header title="Salas"/>
                     <Row className="w-50 m-auto mb-5 mt-5 ">
-                        <Col md='10' className="btn btn-primary btn-lg btn-block">
-                            <Button onClick={() => setIsCreated(true)}><strong className="aumentarTamanhoNav">Adicionar nova sala</strong></Button>
-                        </Col>
+                        <div className="d-grid gap-2">
+                            <Button className='btn btn-success btn-lg btn' 
+                                onClick={() => setIsCreated(true)}
+                                    ><strong className="aumentarTamanhoNav">Adicionar nova sala</strong>
+                            </Button>
+                        </div>
                     </Row>
                     <Row className="w-50 m-auto mb-2">
                         <Col md='8'>
-                            <Form.Group className="mb-3">
+                            <Form.Group className="w-50 m-auto mb-2">
                                 <Form.Control
                                     type="number"
                                     placeholder="Filtrar por capacidade"
@@ -103,7 +107,7 @@ export function Salas() {
                             </Form.Group>
                         </Col>
                         <Col md='2'>
-                            <Button onClick={filtrar}>Filtrar</Button>
+                            <Button className="btn btn-success" onClick={filtrar}>Filtrar</Button>
                         </Col>
                     </Row>
                     <Col className="w-50 m-auto">

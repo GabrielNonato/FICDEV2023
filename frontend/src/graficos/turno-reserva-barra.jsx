@@ -52,9 +52,9 @@ function GraficoBarraTurno() {
                         },
                     },
                     colors: [ 
-                        "#33b2df",
-                        "#546E7A",
-                        "#d4526e",
+                        "#a600e7",
+                        "#0063c0",
+                        "#e77b00",
                     ],
                     
                 }}

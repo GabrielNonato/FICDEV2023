@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import {NavbarComponent} from '../components/Navbar'
 import { Reserva } from "../components/Reserva";
 import { Input } from '../components/Input';
+import { Header } from "../components/Header";
 
 import { createReserva, deleteReserva, getReservas, updateReserva, getFiltroReservas } from "../services/reserva-services"
 import { getSalas } from "../services/sala-services"
@@ -92,20 +93,18 @@ export function Reservas() {
             <div className="d-flex">
                 <div className="col">
                 <NavbarComponent/>
+                <Header title="Reservas"/>
                 <Row className="w-50 m-auto mb-5 mt-5 ">
-                    
-                    <Col md='10'>
-                        <Button onClick={() => setIsCreated(true)}>Reservar Sala</Button>
-                    </Col>
-                    <Col>
-                        <Button variant="outline-secondary" onClick={() => {
-                            navigate('/home');
-                        }}>Voltar</Button>
-                    </Col>
-                </Row>
+                        <div className="d-grid gap-2">
+                            <Button className='btn btn-success btn-lg btn' 
+                                onClick={() => setIsCreated(true)}
+                                    ><strong className="aumentarTamanhoNav">Reservar sala</strong>
+                            </Button>
+                        </div>
+                    </Row>
                 <Row className="w-50 m-auto mb-2">
                     <Col md='8'>
-                        <Form.Group className="mb-3">
+                        <Form.Group className="w-50 m-auto mb-2">
                             <Form.Control
                                 type="date"
                                 placeholder="Filtrar por dia"
@@ -115,7 +114,7 @@ export function Reservas() {
                         </Form.Group>
                     </Col>
                     <Col md='2'>
-                        <Button onClick={filtrar}>Filtrar</Button>
+                        <Button className='btn btn-success' onClick={filtrar}>Filtrar</Button>
                     </Col>
                 </Row>
                 <Col className="w-50 m-auto">

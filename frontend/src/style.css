@@ -26,29 +26,15 @@
   font-size:20px;
 }
 
-/* styles.css */
+
 .custom-navbar {
-    background-color: #292929; /* Cor azul escuro de exemplo */
+    background-color: #292929; 
   }
   
   .custom-navbar .navbar-nav .nav-link {
-    color: #ffffff; /* Cor do texto dos links */
+    color: #ffffff;
   }
   
   .custom-navbar .navbar-nav .nav-link:hover {
-    color: #b3c2d1; /* Cor do texto dos links ao passar o mouse */
+    color: #b3c2d1; 
   }
-  
-  .custom-navbar .navbar-brand img {
-    filter: brightness(0) invert(1); /* Inverter a cor da imagem do ícone para branco */
-  }
-  
-  .custom-navbar .navbar-brand {
-    color: #ffffff; /* Cor do texto da marca */
-  }
-  
-  .custom-navbar .navbar-toggler-icon {
-    background-color: #ffffff; /* Cor do ícone do botão de alternância */
-  }
-  
-  /* Altere as cores e estilos conforme necessário */

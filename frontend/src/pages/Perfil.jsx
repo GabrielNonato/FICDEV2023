@@ -2,10 +2,8 @@ import { Container, Modal, Card, Button, Row, Form, Col} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-
+import {NavbarComponent} from '../components/Navbar'
 import { Input } from "../components/Input"
-
-import { Header } from "../components/Header";
 
 import { deleteUsuario, getUsuario, updateUsuario } from "../services/usuario-services"
 
@@ -59,19 +57,10 @@ export function Perfil(props) {
     return (
         
         <Container fluid>
-            <Header title="Perfil" />
-            <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        navigate('/home');
-                    }}>Voltar</Button>
-            </Col>
-            <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.setItem('token', null)
-                        sessionStorage.setItem('idUsuario', null)
-                        navigate('/');
-                    }}>LogOut</Button>
-            </Col>
+            <div className='col'>
+                <NavbarComponent/>
+            </div>
+            
             <Card className="mb-3 p-3 bg-light">
                 <Card.Title><strong>Nome: </strong>{usuario.nome}</Card.Title>
                 <Card.Text><strong>Email: </strong>{usuario.email}</Card.Text>
@@ -151,6 +140,13 @@ export function Perfil(props) {
                     </Modal.Footer>
                 </Form>
             </Modal>
+            <Col>
+                    <Button variant="outline-secondary" onClick={() => {
+                        sessionStorage.setItem('token', null)
+                        sessionStorage.setItem('idUsuario', null)
+                        navigate('/');
+                    }}>LogOut</Button>
+            </Col>
                 
         </Container>
     );

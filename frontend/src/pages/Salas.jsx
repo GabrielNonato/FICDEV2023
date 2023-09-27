@@ -6,7 +6,7 @@ import {NavbarComponent} from '../components/Navbar'
 import { Sala } from "../components/Sala";
 
 import { Input } from '../components/Input';
-
+import { ModalN2 } from '../components/ModalN2'
 import { Header } from "../components/Header";
 
 import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "../services/sala-services"
@@ -16,6 +16,8 @@ export function Salas() {
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [capacidade, setCapacidade] = useState("")
+
+    const [chaveEstrangeiraErro, setChaveEstrangeiraErro] = useState()
 
     const navigate = useNavigate();
 
@@ -53,7 +55,11 @@ export function Salas() {
             await deleteSala(data.id);
             await findSalas();
         } catch (error) {
-            console.error(error);
+            setChaveEstrangeiraErro({
+                title:'Erro de solicitacao',
+                message:error.response.data.error
+            })
+         
         }
     }
 
@@ -83,7 +89,12 @@ export function Salas() {
 
     return (
         <div className="d-flex">
-                
+                <ModalN2
+                    show={chaveEstrangeiraErro}
+                    title={chaveEstrangeiraErro?.title}
+                    message={chaveEstrangeiraErro?.message}
+                    handleClose={() => setChaveEstrangeiraErro(null)}
+                />
                 <div className="col">
                 <NavbarComponent/>
                     <Header title="Salas"/>

@@ -6,6 +6,7 @@ import { Login } from './pages/Login'
 import { Reservas } from './pages/Reservas'
 import { Home } from './pages/Home'
 import { Perfil } from './pages/Perfil'
+import  { Ajuda } from './pages/Ajuda'
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -59,6 +60,14 @@ export function Navigations() {
                     element={(
                         <PrivateRoute>
                             <Reservas />
+                        </PrivateRoute>
+                    )}
+                /> 
+                <Route
+                    path="/ajuda"
+                    element={(
+                        <PrivateRoute>
+                            <Ajuda />
                         </PrivateRoute>
                     )}
                 /> 

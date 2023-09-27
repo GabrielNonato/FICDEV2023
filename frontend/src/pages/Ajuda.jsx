@@ -1,17 +1,21 @@
 import {NavbarComponent} from '../components/Navbar'
-import Dashboard from '../components/Dashboard'
+import {Row, Col} from 'react-bootstrap'
 
-
-export function Home() {
+export function Ajuda() {
 
     return (
-        
+        <>
         <div className="d-flex">
             <div className="col">
                 <NavbarComponent/>
-                <Dashboard/>
             </div>
         </div>
+        <Col>
+            <Row>
+                <p>lorem ipsum</p>
+            </Row>
+        </Col>
+        </>
     );
 
 }

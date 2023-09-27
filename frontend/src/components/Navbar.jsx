@@ -1,6 +1,6 @@
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
-import '../style.css'; // Importe seu arquivo CSS
+import '../style.css'; 
 
 
 export function NavbarComponent() {
@@ -13,6 +13,7 @@ export function NavbarComponent() {
                     <Nav.Link href="/home"><strong className='aumentarTamanhoNav'>Dashboard</strong></Nav.Link>
                         <Nav.Link href="/sala"><strong className='aumentarTamanhoNav'>Salas</strong></Nav.Link>
                         <Nav.Link href="/reserva"><strong className='aumentarTamanhoNav'>Reservas</strong></Nav.Link>
+                        <Nav.Link href="/ajuda"><strong className='aumentarTamanhoNav'>Ajuda</strong></Nav.Link>
                     </Nav>
                     <Nav>
                         <Navbar.Brand href="/perfil">

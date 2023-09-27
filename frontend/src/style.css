@@ -29,11 +29,11 @@
 .box-area{
   width: 930px;
 }
-/*------------ Right box ------------*/
+
 .right-box{
   padding: 40px 30px 40px 40px;
 }
-/*------------ Custom Placeholder ------------*/
+
 ::placeholder{
   font-size: 16px;
 }
@@ -42,4 +42,8 @@
 }
 .rounded-5{
   border-radius: 30px;
+}
+
+.objetivoCentralizar{
+  padding: 1em;
 }

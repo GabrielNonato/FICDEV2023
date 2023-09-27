@@ -66,7 +66,7 @@ export function Dashboard() {
            
        </div>
        <Row>
-       <Col lg={6} md={12}> {/* Coluna de tamanho 6 para telas grandes (lg) e 12 para telas médias (md) */}
+       <Col lg={6} md={12}>
            <Card className="custom-card">
                <Card.Body>
                     <GraficoBarraTurno/>

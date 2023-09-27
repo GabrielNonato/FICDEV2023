@@ -45,6 +45,7 @@ export function Sala(props) {
             <Card className="mb-3 p-3 bg-light">
                 <Card.Title><strong>Nome: </strong>{props.sala.nome}</Card.Title>
                 <Card.Text><strong>Capacidade: </strong>{props.sala.capacidade}</Card.Text>
+                <Card.Text><strong>Departamento: </strong>{props.sala.departamento}</Card.Text>
                 
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>

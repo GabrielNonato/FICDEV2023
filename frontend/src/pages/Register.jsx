@@ -41,8 +41,10 @@ export function Register() {
                 <div className="featured-image mb-3">
                     
                 </div>
-                <p className="text-light">Sobre nós:</p>
-                <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.</small>
+                <p className="text-light">Cadastre-se já:</p>
+                <small className="text-light">Somos um sistema de gestão de salas. Com inúmeras funcionalidades para reserva e criação de salas além de um dashboard completo.<br></br>
+                Preencha os campos ao lado e venha usufruir do melhor do mercado.
+                </small>
             </div> 
        
            <div className="col-md-6 right-box">

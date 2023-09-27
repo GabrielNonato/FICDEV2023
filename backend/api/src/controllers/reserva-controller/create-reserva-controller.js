@@ -8,7 +8,7 @@ class CreateReservaController {
             const { nomeResponsavel,dia, horarioInicio, horarioFim,SalaId } = request.body;
 
             if (!nomeResponsavel || !dia || !horarioInicio || !horarioFim || !SalaId ) return httpHelper.badRequest('Parâmetros inválidos!');
-            if(horarioFim==horarioInicio) return httpHelper.badRequest('Parâmetros inválidos!');
+            if(horarioFim==horarioInicio || horarioFim<horarioInicio) return httpHelper.badRequest('Parâmetros inválidos!');
             const verificarReservas = await ReservaModel.findAll();
             
             let tamanho = verificarReservas.length

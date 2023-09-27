@@ -7,6 +7,7 @@ import { Reservas } from './pages/Reservas'
 import { Home } from './pages/Home'
 import { Perfil } from './pages/Perfil'
 import  { Ajuda } from './pages/Ajuda'
+import { SemRota } from "./pages/SemRota";
 
 import { isAuthenticated } from './utils/is-authenticated';
 
@@ -71,6 +72,12 @@ export function Navigations() {
                         </PrivateRoute>
                     )}
                 /> 
+                <Route
+                    path="*"
+                    element={
+                        <SemRota/>
+                    }
+                />
             </Routes>
         </BrowserRouter>
     )

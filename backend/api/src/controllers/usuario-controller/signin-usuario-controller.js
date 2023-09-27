@@ -18,10 +18,10 @@ class SigninUsuarioController {
 
             const usuarioExists = await UsuarioModel.findOne({ where: { email } });
 
-            if (!usuarioExists) return httpHelper.notFound('Usuário não encontrado!');
+            if (!usuarioExists) return httpHelper.notFound('Email ou senha incorretos!');
             const isSenhaValid = await bcrypt.compare(senha, usuarioExists.senha);
 
-            if (!isSenhaValid) return httpHelper.badRequest('Senha incorreta!');
+            if (!isSenhaValid) return httpHelper.badRequest('Email ou senha incorretos!');
             const accessToken = jwt.sign(
                 { id: usuarioExists.id },
                 process.env.TOKEN_SECRET,

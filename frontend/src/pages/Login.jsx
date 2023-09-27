@@ -42,16 +42,18 @@ export function Login() {
         
             <div className="col-md-6 rounded-4 d-flex justify-content-center flex-column left-box bg-dark">
                 <div className="featured-image mb-3">
-                    
+                    <h2 className="text-light bi bi-calendar"><strong>&nbsp;&nbsp;SSR</strong></h2>
                 </div>
                 <p className="text-light">Sobre nós:</p>
-                <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.</small>
+                <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.<br></br>
+                Esperamos ver você novamente.
+                </small>
             </div> 
        
            <div className="col-md-6 right-box">
               <div className="row align-items-center">
                     <div className="header-text mb-4">
-                         <h2 className="text-center">Bem vindo!</h2>
+                         <h2 className="text-center"><strong>Bem vindo!</strong></h2>
                          <p className="text-center">Por favor, conecte-se na sua conta.</p>
                     </div>
 

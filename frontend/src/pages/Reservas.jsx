@@ -72,7 +72,7 @@ export function Reservas() {
             await findReservas();
         } catch (error) {
             setErroResultado({
-                title:'Bad Request: Horário já reservado',
+                title:'Bad Request',
                 message: error.response.data.error
             });
         }

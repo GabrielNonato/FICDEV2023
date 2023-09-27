@@ -42,7 +42,7 @@ function GraficoBarraTurno() {
                 options={{
                     labels: ['Matutino', 'Vespertino','Noturno'],
                     title: {
-                        text: "Quantidade de reservas por turno",
+                        text: "Quantidade de reservas por turno de todos os tempos",
                     },
                     plotOptions: {
                         bar: {

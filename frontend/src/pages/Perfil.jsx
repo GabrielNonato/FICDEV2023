@@ -114,7 +114,7 @@ export function Perfil(props) {
                         </Col>
                       </Row>
                       <Row>
-                        <Button variant="primary" className="bi bi-pencil-square btn-dark" onClick={() => setIsUpdated(true)}><strong>Editar</strong></Button>
+                        <Button variant="primary" className="bi bi-pencil-square btn-dark" onClick={() => setIsUpdated(true)}><strong>&nbsp;Editar</strong></Button>
                       </Row>
 
                     </Card.Body>

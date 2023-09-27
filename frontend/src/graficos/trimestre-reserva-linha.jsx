@@ -43,7 +43,7 @@ function GraficoLinhaTrimestre() {
                         curve: 'stepline',
                     },
                     title: {
-                        text: "Reservas por trimestre",
+                        text: "Reservas por trimestre no ano",
                     },
                 }}
             />

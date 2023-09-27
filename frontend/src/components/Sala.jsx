@@ -60,7 +60,7 @@ export function Sala(props) {
 
             <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
                 <Modal.Header>
-                    <Modal.Title>Deseja Deletar?</Modal.Title>
+                    <Modal.Title>Deseja deletar?</Modal.Title>
                 </Modal.Header>
                     <Modal.Footer>
                         <Button variant="danger" type="submit" onClick={removeSala} disabled={!isValid2}>Apagar</Button>

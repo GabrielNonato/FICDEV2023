@@ -83,7 +83,7 @@ export function Reserva(props) {
 
             <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
                 <Modal.Header>
-                    <Modal.Title>Deseja Deletar?</Modal.Title>
+                    <Modal.Title>Deseja deletar?</Modal.Title>
                 </Modal.Header>
                     <Modal.Footer>
                         <Button variant="danger" type="submit" onClick={removeReserva} disabled={!isValid2}>Apagar</Button>

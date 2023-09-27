@@ -35,9 +35,9 @@ export function Register() {
                 handleClose={() => setResult(null)}
             />
         
-           <div className="row border rounded-5 p-3 bg-white shadow box-area">
+           <div className="row border border-dark rounded-5 p-3 bg-white shadow box-area">
         
-            <div className="col-md-6 rounded-4 d-flex justify-content-center align-items-center flex-column left-box bg-dark">
+            <div className="col-md-6 rounded-4 d-flex justify-content-center  flex-column left-box bg-dark">
                 <div className="featured-image mb-3">
                     
                 </div>

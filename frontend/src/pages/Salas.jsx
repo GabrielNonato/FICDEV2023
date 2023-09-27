@@ -97,6 +97,7 @@ export function Salas() {
                     </Row>
                     <Row className="w-50 m-auto mb-2">
                         <Col md='8'>
+                            
                             <Form.Group className="w-50 m-auto mb-2">
                                 <Form.Control
                                     type="number"
@@ -105,13 +106,18 @@ export function Salas() {
                                     onChange={(e) => setCapacidade(e.target.value)}
                                 />
                             </Form.Group>
-                            <Button className='btn btn-danger btn-lg btn' 
-                                onClick={() => findSalas()}
-                                    ><strong className="aumentarTamanhoNav">Limpar Filtro</strong>
-                            </Button>
+                            
                         </Col>
                         <Col md='2'>
                             <Button className="btn btn-success" onClick={filtrar}>Filtrar</Button>
+                        </Col>
+                        <Col>
+                            <Button className='btn btn-danger' onClick={() => {
+                                findSalas()
+                                setCapacidade(0)
+                                }}>
+                              Limpar Filtro
+                            </Button>
                         </Col>
                     </Row>
                     <Col className="w-50 m-auto">

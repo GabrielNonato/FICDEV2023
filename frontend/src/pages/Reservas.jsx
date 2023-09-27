@@ -124,13 +124,20 @@ export function Reservas() {
                                 onChange={(e) => setDia(e.target.value)}
                             />
                         </Form.Group>
-                        <Button className='btn btn-danger btn-lg btn' 
-                                onClick={() => findReservas()}
-                                    ><strong className="aumentarTamanhoNav">Limpar Filtro</strong>
-                            </Button>
+                        
                     </Col>
                     <Col md='2'>
                         <Button className='btn btn-success' onClick={filtrar}>Filtrar</Button>
+                    </Col>
+                    <Col>
+                        <Button className='btn btn-danger' 
+                                onClick={() => {
+                                    findReservas()
+                                    setDia('')
+                                    }
+                                }
+                                    >Limpar Filtro
+                        </Button>
                     </Col>
                 </Row>
                 <Col className="w-50 m-auto">

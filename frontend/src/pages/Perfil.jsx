@@ -82,7 +82,7 @@ export function Perfil(props) {
     <>
       <NavbarComponent />
       <Container fluid>
-        <Container className="py-5 h-100">
+          <br></br>
           <Row className="justify-content-center align-items-center h-100">
             <Col lg="6" className="mb-4 mb-lg-0 ">
               <Card className="mb-3 ">
@@ -115,6 +115,11 @@ export function Perfil(props) {
                       </Row>
                       <Row>
                         <Button variant="primary" className="bi bi-pencil-square btn-dark" onClick={() => setIsUpdated(true)}><strong>&nbsp;Editar</strong></Button>
+                        
+                      </Row>
+                      <br></br>
+                      <Row>
+                      <Button variant="outline-danger" className="" onClick={() => setIsDeleted(true)}>Deletar conta</Button>
                       </Row>
 
                     </Card.Body>
@@ -123,13 +128,13 @@ export function Perfil(props) {
                 </Row>
               </Card>
               <Row xs="auto" className="d-flex justify-content-center">
-                <Button variant="outline-danger" className="ms-3" onClick={() => setIsDeleted(true)}>Deletar conta</Button>
+                
               </Row>
             </Col>
 
           </Row>
 
-        </Container>
+        
 
         <Modal show={isDeleted} onHide={() => setIsDeleted(false)}>
           <Modal.Header>

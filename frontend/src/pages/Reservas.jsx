@@ -20,6 +20,7 @@ export function Reservas() {
     const navigate = useNavigate();
     const [dia, setDia] = useState("")
     const [erroResultado, setErroResultado] = useState(null)
+    const [sucessoRota, setSucessoRota] = useState(null)
 
     useEffect(() => {
         findReservas();
@@ -51,6 +52,9 @@ export function Reservas() {
         try {
             const result = await getFiltroReservas({dia: dia});
             setReservas(result.data);
+            setSucessoRota({
+                message: 'Filtro realizado'
+            })
         } catch (error) {
             console.error(error);
         }
@@ -60,6 +64,9 @@ export function Reservas() {
         try {
             await deleteReserva(data.id);
             await findReservas();
+            setSucessoRota({
+                message: 'Deleção realizada'
+            })
         } catch (error) {
             console.error(error);
         }
@@ -70,6 +77,9 @@ export function Reservas() {
             await createReserva(data);
             setIsCreated(false);
             await findReservas();
+            setSucessoRota({
+                message: 'Cadastro realizado com sucesso'
+            })
         } catch (error) {
             setErroResultado({
                 title:'Bad Request',
@@ -89,8 +99,14 @@ export function Reservas() {
                 idSala: data.idSala
             });
             await findReservas();
+            setSucessoRota({
+                message: 'Atualizado com sucesso'
+            })
         } catch (error) {
-            console.error(error);
+            setErroResultado({
+                title:'Bad Request',
+                message: error.response.data.error
+            });
         }
     }
 
@@ -103,6 +119,14 @@ export function Reservas() {
                     message={erroResultado?.message}
                     handleClose={() => setErroResultado(null)}
                 />
+
+                <ModalN2
+                    show={sucessoRota}
+                    title={sucessoRota?.title}
+                    message={sucessoRota?.message}
+                    handleClose={() => setSucessoRota(null)}
+                />
+                
                 <div className="col">
                 <NavbarComponent/>
                 <Header title="Reservas"/>

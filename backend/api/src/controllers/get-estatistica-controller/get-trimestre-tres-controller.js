@@ -9,7 +9,7 @@ class GetTrimestreTresReservaController {
         try {
             const dataAtual = new Date()
             const dataAno = dataAtual.getFullYear();
-            const dataComparada = dataAno+'-10-01'
+            const dataComparada = dataAno+'-09-01'
             const dataComparada2 = dataAno+'-06-01'
 
             const reservas = await ReservaModel.count({

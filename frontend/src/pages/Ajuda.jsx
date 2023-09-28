@@ -1,6 +1,6 @@
 import {NavbarComponent} from '../components/Navbar'
 import {Row, Card} from 'react-bootstrap'
-
+import {Header} from '../components/Header'
 export function Ajuda() {
 
     return (
@@ -9,8 +9,13 @@ export function Ajuda() {
             <div className="col">
                 <NavbarComponent/>
             </div>
+            
         </div>
-        <Card className="mb-3 p-3 bg-light ">
+        <br></br>
+        <br></br>
+        <Header title='Dúvidas frequentes:'></Header>
+        <Card className="w-50 m-auto">
+
                 <Card.Title className='d-flex justify-content-center'><strong>Como faço para cadastrar uma sala?</strong></Card.Title>
                 <Row xs="auto" className="d-flex justify-content-center">
                     1. Clique na barra de navegação na aba 'Salas'<br></br>
@@ -18,7 +23,8 @@ export function Ajuda() {
                     3. Preencha o formulário com os campos necessários
                 </Row>
         </Card>
-        <Card className="mb-3 p-3 bg-light ">
+        <br></br>
+        <Card className="w-50 m-auto">
                 <Card.Title className='d-flex justify-content-center'><strong>Como faço para reservar?</strong></Card.Title>
                 <Row xs="auto" className="d-flex justify-content-center">
                     1. Clique na barra de navegação na aba 'Reservas'<br></br>
@@ -26,7 +32,8 @@ export function Ajuda() {
                     3. Preencha o formulário com os campos necessários
                 </Row>
         </Card>
-        <Card className="mb-3 p-3 bg-light ">
+        <br></br>
+        <Card className="w-50 m-auto">
                 <Card.Title className='d-flex justify-content-center'><strong>Gostaria de alterar uma informação pessoal. É possível?</strong></Card.Title>
                 <Row xs="auto" className="d-flex justify-content-center">
                     Sim, basta procurar na navegação o ícone de perfil e clicar nele.<br></br> 
@@ -34,7 +41,8 @@ export function Ajuda() {
                     Ao clicar no botão editar é possível alterar dados pessoais
                 </Row>
         </Card>
-        <Card className="mb-3 p-3 bg-light ">
+        <br></br>
+        <Card className="w-50 m-auto">
                 <Card.Title className='d-flex justify-content-center'><strong>Gostaria de deletar a minha conta. É possível?</strong></Card.Title>
                 <Row xs="auto" className="d-flex justify-content-center">
                     Sim, basta procurar na navegação o ícone de perfil e clicar nele.<br></br> 

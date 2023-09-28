@@ -40,7 +40,7 @@ export function Dashboard() {
             <div className="container-fluid">
                 <div className="row">
                     <div className="d-flex justify-content-around align-items-center col p-3 bg-white border border-secundary shadow-sm">
-                        <i className="bi bi-arrow-left-square-fill fs-1 text-success"></i>
+                        <i className="bi bi-bar-chart-fill fs-1 text-success"></i>
                         <div>
                             <p className='TextoDash'><strong>Salas analisadas</strong></p>
                             <h2>{quantidadeDeSalas}</h2>

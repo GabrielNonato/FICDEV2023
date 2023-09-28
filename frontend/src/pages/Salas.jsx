@@ -16,8 +16,9 @@ export function Salas() {
     const [isCreated, setIsCreated] = useState(false);
     const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [capacidade, setCapacidade] = useState("")
-
+    const [erroResultado, setErroResultado] = useState(null)
     const [chaveEstrangeiraErro, setChaveEstrangeiraErro] = useState()
+    const [sucessoRota, setSucessoRota] = useState(null)
 
     const navigate = useNavigate();
 
@@ -45,6 +46,9 @@ export function Salas() {
 
             const result = await getFiltroSalas({ capacidade: capacidade });
             setSalas(result.data);
+            setSucessoRota({
+                message: 'Filtro realizado'
+            })
         } catch (error) {
             console.error(error);
         }
@@ -54,6 +58,9 @@ export function Salas() {
         try {
             await deleteSala(data.id);
             await findSalas();
+            setSucessoRota({
+                message: 'Deleção realizada'
+            })
         } catch (error) {
             setChaveEstrangeiraErro({
                 title:'Erro de solicitação',
@@ -68,8 +75,14 @@ export function Salas() {
             await createSala(data);
             setIsCreated(false);
             await findSalas();
+            setSucessoRota({
+                message: 'Cadastro realizado com sucesso'
+            })
         } catch (error) {
-            console.error(error);
+            setErroResultado({
+                title:'Bad Request',
+                message: 'Nome de sala ja utilizado'
+            });
         }
     }
 
@@ -82,8 +95,14 @@ export function Salas() {
                 departamentoSala: data.departamentoSala
             });
             await findSalas();
+            setSucessoRota({
+                message: 'Atualizado com sucesso'
+            })
         } catch (error) {
-            console.error(error);
+            setErroResultado({
+                title:'Bad Request',
+                message: 'Nome de sala ja utilizado'
+            });
         }
     }
 
@@ -94,6 +113,18 @@ export function Salas() {
                     title={chaveEstrangeiraErro?.title}
                     message={chaveEstrangeiraErro?.message}
                     handleClose={() => setChaveEstrangeiraErro(null)}
+                />
+                <ModalN2
+                    show={erroResultado}
+                    title={erroResultado?.title}
+                    message={erroResultado?.message}
+                    handleClose={() => setErroResultado(null)}
+                />
+                <ModalN2
+                    show={sucessoRota}
+                    title={sucessoRota?.title}
+                    message={sucessoRota?.message}
+                    handleClose={() => setSucessoRota(null)}
                 />
                 <div className="col">
                 <NavbarComponent/>

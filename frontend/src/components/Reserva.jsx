@@ -165,7 +165,7 @@ export function Reserva(props) {
                             <option value='17:00:00'>17:00</option>
                             <option value='19:00:00'>19:00</option>
                             <option value='21:00:00'>21:00</option>
-                            <option value='23:00:00'>07:00</option>
+                            <option value='23:00:00'>23:00</option>
                         </Form.Select>
                     </Form.Group>
                     <Form.Group controlId="formIdSala">

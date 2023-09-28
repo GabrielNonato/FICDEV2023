@@ -9,7 +9,7 @@ class CreateSalaController {
 
             if (!nome) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!departamento) return httpHelper.badRequest('Parâmetros inválidos!');
-            if (!capacidade) return httpHelper.badRequest('Parâmetros inválidos!');
+            if (!capacidade || capacidade<1) return httpHelper.badRequest('Parâmetros inválidos!');
 
             const sala = await SalaModel.create({
                 nome,departamento,capacidade

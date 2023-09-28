@@ -159,6 +159,7 @@ export function Perfil(props) {
                 type='text'
                 name='nomeUsuario'
                 errors={errors.nomeUsuario}
+                defaultValue={usuario.nome}
                 placeholder='Insira o nome do responsavel pela sala'
                 validations={register('nomeUsuario', {
                   required: {
@@ -174,6 +175,7 @@ export function Perfil(props) {
                 type='email'
                 name='emailUsuario'
                 errors={errors.emailUsuario}
+                defaultValue={usuario.email}
                 placeholder='Insira o dia da reserva'
                 validations={register('emailUsuario', {
                   required: {

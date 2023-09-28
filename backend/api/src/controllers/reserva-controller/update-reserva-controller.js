@@ -14,6 +14,7 @@ class UpdateReservaController {
             if (!dia) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!horarioInicio) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!horarioFim) return httpHelper.badRequest('Parâmetros inválidos!');
+            if(horarioFim==horarioInicio || horarioFim<horarioInicio) return httpHelper.badRequest('Parâmetros inválidos!');
 
             const verificarReservas = await ReservaModel.findAll({
                 where: {

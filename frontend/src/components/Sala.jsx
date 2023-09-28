@@ -43,7 +43,7 @@ export function Sala(props) {
         <>
             
             <Card className="mb-3 p-3 bg-light">
-                <Card.Title><strong>Nome: </strong>{props.sala.nome}</Card.Title>
+                <Card.Text><strong>Nome: </strong>{props.sala.nome}</Card.Text>
                 <Card.Text><strong>Capacidade: </strong>{props.sala.capacidade}</Card.Text>
                 <Card.Text><strong>Departamento: </strong>{props.sala.departamento}</Card.Text>
                 
@@ -109,6 +109,10 @@ export function Sala(props) {
                                 required: {
                                     value: true,
                                     message: 'Capacidade da sala é obrigatório.'
+                                },
+                                min:{
+                                    value:1,
+                                    message: 'Capacidade inválida'
                                 }
                             })}
                         />

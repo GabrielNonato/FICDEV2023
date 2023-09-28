@@ -56,7 +56,7 @@ export function Salas() {
             await findSalas();
         } catch (error) {
             setChaveEstrangeiraErro({
-                title:'Erro de solicitacao',
+                title:'Erro de solicitação',
                 message:error.response.data.error
             })
          
@@ -182,6 +182,10 @@ export function Salas() {
                                             value: true,
                                             message: 'Capacidade da sala é obrigatório.'
                                         },
+                                        min: {
+                                            value:1,
+                                            message: 'Capacidade inválida'
+                                        }
                                     })}
                                 /><Input
                                 className="mb-3"

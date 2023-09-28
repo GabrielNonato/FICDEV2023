@@ -63,7 +63,7 @@ export function Reserva(props) {
         <>
             
             <Card className="mb-3 p-3 bg-light">
-                <Card.Title><strong>Dia: </strong>{props.reserva.dia}</Card.Title>
+                <Card.Text><strong>Dia: </strong>{props.reserva.dia}</Card.Text>
                 <Card.Text><strong>Nome do Responsável: </strong>{props.reserva.nomeResponsavel}</Card.Text>
                 <Card.Text><strong>Horario inicio: </strong>{props.reserva.horarioInicio}</Card.Text>
                 <Card.Text><strong>Horario fim: </strong>{props.reserva.horarioFim}</Card.Text>

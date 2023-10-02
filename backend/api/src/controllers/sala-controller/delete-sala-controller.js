@@ -10,13 +10,11 @@ class DeleteSalaController {
         try {
             const { id } = request.params;
 
-            const restricao = await ReservaModel.findAll({where: {
-                SalaId:{
-                    [Op.eq]: id
-                }
+            const restricao = await ReservaModel.findOne({where: {
+                SalaId: id
             }})
 
-            if(restricao[0]) return httpHelper.badRequest("Solicitação negada. Ainda há reservas utilizando esta sala")
+            if(restricao) return httpHelper.badRequest("Solicitação negada. Ainda há reservas utilizando esta sala")
 
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
             const salaExists = await SalaModel.findOne({ where: { id } });

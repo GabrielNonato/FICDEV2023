@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button} from "react-bootstrap";
+import { Form, Button, Container, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -30,81 +30,82 @@ export function Login() {
 
     return (
         <>
-        <div className="container d-flex justify-content-center align-items-center min-vh-100">
+        <Container className="d-flex justify-content-center align-items-center min-vh-100">
             <Modal
                 show={result}
                 title={result?.title}
                 message={result?.message}
                 handleClose={() => setResult(null)}
             />
-            
-           <div className="row border border-dark rounded-5 p-3 bg-white shadow box-area">
+            <Row className="border border-dark rounded-5 p-3 bg-white shadow box-area">
+                <div className="col-md-6 rounded-4 d-flex justify-content-center flex-column left-box bg-dark">
+                    <div className="featured-image mb-3">
+                        <h2 className="text-light bi bi-calendar"><strong>&nbsp;&nbsp;SSR</strong></h2>
+                    </div>
+                    <p className="text-light">Sobre nós:</p>
+                    <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.<br></br>
+                    Esperamos ver você novamente.
+                    </small>
+                </div> 
         
-            <div className="col-md-6 rounded-4 d-flex justify-content-center flex-column left-box bg-dark">
-                <div className="featured-image mb-3">
-                    <h2 className="text-light bi bi-calendar"><strong>&nbsp;&nbsp;SSR</strong></h2>
+            <div className="col-md-6 right-box">
+                <div className="row align-items-center">
+                        <div className="header-text mb-4">
+                            <h2 className="text-center"><strong>Bem vindo!</strong></h2>
+                            <p className="text-center">Por favor, conecte-se na sua conta.</p>
+                        </div>
+
+                        <Form
+                                noValidate
+                                validated={!errors}
+                                onSubmit={handleSubmit(onSubmit)}
+                                autoComplete='off'
+                                className="form-control form-control-lg bg-light fs-6"
+                            >
+                            
+                                <Input
+                                    className="mb-4"
+                                    controlId="formGroupEmail"
+                                    label="E-mail"
+                                    type="email"
+                                    name="email"
+                                    errors={errors.email}
+                                    placeholder="Insira seu e-mail"
+                                    validations={register('email', {
+                                        required: {
+                                            value: false,
+                                        },
+
+                                    })}
+                                />
+                                <Input
+                                    className="mb-4"
+                                    controlId="formGroupSenha"
+                                    label="Senha"
+                                    type="password"
+                                    name="senha"
+                                    errors={errors.senha}
+                                    placeholder="Insira sua senha"
+                                    validations={register('senha', {
+                                        required: {
+                                            value: false,
+                                        }
+                                    })}
+                                />
+                                <Button type="submit" className="btn btn-dark btn-lg w-100 fs-6" disabled={!isValid}>Entrar</Button>
+                        </Form>
+
+
+                        <div className="row">
+                            <small className="text-center">Não possue conta? <Link to="/register" className="text-decoration-none text-dark"><strong>Cadastre-se</strong></Link></small>
+                        </div>
                 </div>
-                <p className="text-light">Sobre nós:</p>
-                <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.<br></br>
-                Esperamos ver você novamente.
-                </small>
             </div> 
-       
-           <div className="col-md-6 right-box">
-              <div className="row align-items-center">
-                    <div className="header-text mb-4">
-                         <h2 className="text-center"><strong>Bem vindo!</strong></h2>
-                         <p className="text-center">Por favor, conecte-se na sua conta.</p>
-                    </div>
-
-                    <Form
-                            noValidate
-                            validated={!errors}
-                            onSubmit={handleSubmit(onSubmit)}
-                            autoComplete='off'
-                            className="form-control form-control-lg bg-light fs-6"
-                        >
-                        
-                            <Input
-                                className="mb-4"
-                                controlId="formGroupEmail"
-                                label="E-mail"
-                                type="email"
-                                name="email"
-                                errors={errors.email}
-                                placeholder="Insira seu e-mail"
-                                validations={register('email', {
-                                    required: {
-                                        value: false,
-                                    },
-
-                                })}
-                            />
-                            <Input
-                                className="mb-4"
-                                controlId="formGroupSenha"
-                                label="Senha"
-                                type="password"
-                                name="senha"
-                                errors={errors.senha}
-                                placeholder="Insira sua senha"
-                                validations={register('senha', {
-                                    required: {
-                                        value: false,
-                                    }
-                                })}
-                            />
-                            <Button type="submit" className="btn btn-dark btn-lg w-100 fs-6" disabled={!isValid}>Entrar</Button>
-                    </Form>
-
-
-                    <div className="row">
-                        <small className="text-center">Não possue conta? <Link to="/register" className="text-decoration-none text-dark"><strong>Cadastre-se</strong></Link></small>
-                    </div>
-              </div>
-           </div> 
-          </div>
-        </div>
+            </Row>
+        </Container>
+        
+            
+  
      </>
   );
 }

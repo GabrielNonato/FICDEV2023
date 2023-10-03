@@ -5,15 +5,14 @@ import '../style.css';
 
 export function NavbarComponent() {
     return (
-        <Navbar collapseOnSelect expand="lg" className="custom-navbar">
+        <Navbar className="custom-navbar bg-dark">
             <Container fluid>
-                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-                <Navbar.Collapse id="responsive-navbar-nav">
+                
                     <Nav className="me-auto">
-                    <Nav.Link href="/home"><strong className='aumentarTamanhoNav'>Dashboard</strong></Nav.Link>
-                        <Nav.Link href="/sala"><strong className='aumentarTamanhoNav'>Salas</strong></Nav.Link>
-                        <Nav.Link href="/reserva"><strong className='aumentarTamanhoNav'>Reservas</strong></Nav.Link>
-                        <Nav.Link href="/ajuda"><strong className='aumentarTamanhoNav'>Ajuda</strong></Nav.Link>
+                        <Nav.Link href="/home"><strong className='aumentarTamanhoNav text-light'>Dashboard</strong></Nav.Link>
+                        <Nav.Link href="/sala"><strong className='aumentarTamanhoNav text-light'>Salas</strong></Nav.Link>
+                        <Nav.Link href="/reserva"><strong className='aumentarTamanhoNav text-light'>Reservas</strong></Nav.Link>
+                        <Nav.Link href="/ajuda"><strong className='aumentarTamanhoNav text-light'>Ajuda</strong></Nav.Link>
                     </Nav>
                     <Nav>
                         <Navbar.Brand href="/perfil">
@@ -29,7 +28,7 @@ export function NavbarComponent() {
                             <i className="bi bi-box-arrow-in-left fs-1 text-light"></i>
                         </Navbar.Brand>
                     </Nav>
-                </Navbar.Collapse>
+             
             </Container>
         </Navbar>
     )

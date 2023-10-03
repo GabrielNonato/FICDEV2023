@@ -8,6 +8,7 @@ import { Input } from '../components/Input';
 import { Header } from "../components/Header";
 
 import { ModalN2 } from "../components/ModalN2";
+import { ModalFracasso } from "../components/ModalFracasso";
 
 import { createReserva, deleteReserva, getReservas, updateReserva, getFiltroReservas } from "../services/reserva-services"
 import { getSalas } from "../services/sala-services"
@@ -113,7 +114,7 @@ export function Reservas() {
     return (
        
             <div className="d-flex">
-                <ModalN2
+                <ModalFracasso
                     show={erroResultado}
                     title={erroResultado?.title}
                     message={erroResultado?.message}

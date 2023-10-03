@@ -7,6 +7,7 @@ import { Sala } from "../components/Sala";
 
 import { Input } from '../components/Input';
 import { ModalN2 } from '../components/ModalN2'
+import { ModalFracasso } from '../components/ModalFracasso'
 import { Header } from "../components/Header";
 
 import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "../services/sala-services"
@@ -108,13 +109,13 @@ export function Salas() {
 
     return (
         <div className="d-flex">
-                <ModalN2
+                <ModalFracasso
                     show={chaveEstrangeiraErro}
                     title={chaveEstrangeiraErro?.title}
                     message={chaveEstrangeiraErro?.message}
                     handleClose={() => setChaveEstrangeiraErro(null)}
                 />
-                <ModalN2
+                <ModalFracasso
                     show={erroResultado}
                     title={erroResultado?.title}
                     message={erroResultado?.message}

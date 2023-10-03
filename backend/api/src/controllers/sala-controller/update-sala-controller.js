@@ -13,6 +13,14 @@ class UpdateSalaController {
             if (!departamento) return httpHelper.badRequest('Parâmetros inválidos!');
             if (!capacidade) return httpHelper.badRequest('Parâmetros inválidos!');
 
+            const salaExiste = await SalaModel.findOne({
+                where:{
+                    nome:nome
+                }
+            })
+
+            if(salaExiste) return httpHelper.badRequest('Nome já utilizado por outra sala')
+
             const salaExists = await SalaModel.findByPk(id);
             if (!salaExists) return httpHelper.notFound('Sala não encontrada!');
             await SalaModel.update({

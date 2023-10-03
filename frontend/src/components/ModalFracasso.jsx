@@ -1,15 +1,14 @@
 import { Modal, Button } from 'react-bootstrap';
 import '../style.css'
-
-export function ModalN2(props) {
+export function ModalFracasso(props) {
     return (
         <Modal show={props.show} onHide={props.handleClose}>
             <Modal.Header closeButton>
-                <Modal.Title>
+                <Modal.Title className='text-danger'>
                     {props.title}
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body className='text-success bi bi-check-circle tamanhoFonteModal'>
+            <Modal.Body className='text-danger bi bi-x-circle tamanhoFonteModal'>
                 &nbsp;{props.message}
             </Modal.Body>
             <Modal.Footer>

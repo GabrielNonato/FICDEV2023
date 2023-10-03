@@ -9,7 +9,7 @@ export function ModalN2(props) {
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                {props.message}
+                <p className='align-content-center bi bi-check-circle text-success'>&nbsp;{props.message}</p>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={props.handleClose}>

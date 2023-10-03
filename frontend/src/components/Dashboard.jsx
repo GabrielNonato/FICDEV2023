@@ -42,7 +42,7 @@ export function Dashboard() {
                     <div className="d-flex justify-content-around align-items-center col p-3 bg-white border border-secundary shadow-sm">
                         <i className="bi bi-bar-chart-fill fs-1 text-success"></i>
                         <div>
-                            <p className='TextoDash'><strong>Salas analisadas</strong></p>
+                            <p className='TextoDash'><strong>Salas totais</strong></p>
                             <h2>{quantidadeDeSalas}</h2>
                         </div>
                     </div>

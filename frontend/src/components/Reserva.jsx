@@ -59,11 +59,34 @@ export function Reserva(props) {
     let nome
     salas.filter((sala) => sala.id === props.reserva.SalaId? nome=sala.nome: 'Sala não listada' )
 
+    const converterData = (date) => {
+        const data = new Date(date);
+
+        let dia = data.getUTCDate()
+        let ano = data.getFullYear()
+
+        let mes
+        if(dia===1){
+            mes = data.getMonth()+2
+        }else{
+            mes = data.getMonth()+1
+        }
+
+        if(dia<10 && mes<10){
+            return `0${dia}/0${mes}/${ano}`;
+        }else if(dia<10){
+            return `0${dia}/${mes}/${ano}`;
+        }else if(mes<10){
+            return `${dia}/0${mes}/${ano}`;
+        }
+        return `${dia}/${mes}/${ano}`;
+      };
+
     return (
         <>
             
             <Card className="mb-3 p-3 bg-light">
-                <Card.Text><strong>Dia: </strong>{props.reserva.dia}</Card.Text>
+                <Card.Text><strong>Dia: </strong>{converterData(props.reserva.dia)}</Card.Text>
                 <Card.Text><strong>Nome do Responsável: </strong>{props.reserva.nomeResponsavel}</Card.Text>
                 <Card.Text><strong>Horario inicio: </strong>{props.reserva.horarioInicio}</Card.Text>
                 <Card.Text><strong>Horario fim: </strong>{props.reserva.horarioFim}</Card.Text>

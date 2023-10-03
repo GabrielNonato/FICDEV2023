@@ -166,9 +166,9 @@ export function Reservas() {
                 </Row>
                 <Col className="w-50 m-auto">
                     {reservas && reservas.length > 0
-                        ? reservas.map((reserva, index) => (
+                        ? reservas.map((reserva) => (
                             <Reserva
-                                key={index}
+                                key={reserva.id}
                                 reserva={reserva}
                                 removeReserva={removeReserva}
                                 editReserva={editReserva}

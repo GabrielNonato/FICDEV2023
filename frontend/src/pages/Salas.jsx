@@ -143,7 +143,7 @@ export function Salas() {
                             <Form.Group className="w-50 m-auto mb-2">
                                 <Form.Control
                                     type="number"
-                                    placeholder="Filtrar por capacidade"
+                                    placeholder="Filtrar por capacidade mínima"
                                     value={capacidade}
                                     onChange={(e) => setCapacidade(e.target.value)}
                                 />
@@ -164,9 +164,9 @@ export function Salas() {
                     </Row>
                     <Col className="w-50 m-auto">
                         {salas && salas.length > 0
-                            ? salas.map((sala, index) => (
+                            ? salas.map((sala) => (
                                 <Sala
-                                    key={index}
+                                    key={sala.id}
                                     sala={sala}
                                     removeSala={removeSala}
                                     editSala={editSala}

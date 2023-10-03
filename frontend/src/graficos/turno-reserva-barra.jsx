@@ -42,7 +42,7 @@ function GraficoBarraTurno() {
                 options={{
                     labels: ['Matutino', 'Vespertino','Noturno'],
                     title: {
-                        text: "Reservas acabam em qual turno?",
+                        text: "Turno em que as reservas acabam.",
                     },
                     plotOptions: {
                         bar: {

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button, Container, Row } from "react-bootstrap";
+import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ export function Login() {
                 handleClose={() => setResult(null)}
             />
             <Row className="border border-dark rounded-5 p-3 bg-white shadow box-area">
-                <div className="col-md-6 rounded-4 d-flex justify-content-center flex-column left-box bg-dark">
+                <Col className="col-md-6 rounded-4 d-flex justify-content-center flex-column left-box bg-dark">
                     <div className="featured-image mb-3">
                         <h2 className="text-light bi bi-calendar"><strong>&nbsp;&nbsp;SSR</strong></h2>
                     </div>
@@ -46,11 +46,11 @@ export function Login() {
                     <small className="text-light">Somos um sistema de gestão de salas. Você encontrará diversas funcionalidades para reserva e criação de salas além de um dashboard completo.<br></br>
                     Esperamos ver você novamente.
                     </small>
-                </div> 
-        
-            <div className="col-md-6 right-box">
-                <div className="row align-items-center">
-                        <div className="header-text mb-4">
+                </Col>
+               
+                <Col className="col-md-6 right-box">
+                    <Row className="row align-items-center">
+                    <div className="header-text mb-4">
                             <h2 className="text-center"><strong>Bem vindo!</strong></h2>
                             <p className="text-center">Por favor, conecte-se na sua conta.</p>
                         </div>
@@ -94,13 +94,12 @@ export function Login() {
                                 />
                                 <Button type="submit" className="btn btn-dark btn-lg w-100 fs-6" disabled={!isValid}>Entrar</Button>
                         </Form>
-
-
-                        <div className="row">
-                            <small className="text-center">Não possue conta? <Link to="/register" className="text-decoration-none text-dark"><strong>Cadastre-se</strong></Link></small>
-                        </div>
-                </div>
-            </div> 
+                    </Row>
+                    <Row>
+                        <small className="text-center">Não possue conta? <Link to="/register" className="text-decoration-none text-dark"><strong>Cadastre-se</strong></Link></small>
+                    </Row>
+                </Col>
+ 
             </Row>
         </Container>
         

@@ -81,7 +81,7 @@ export function Salas() {
         } catch (error) {
             setErroResultado({
                 title:'Bad Request',
-                message: 'Nome de sala ja utilizado'
+                message: error.response.data.error
             });
         }
     }
@@ -101,7 +101,7 @@ export function Salas() {
         } catch (error) {
             setErroResultado({
                 title:'Bad Request',
-                message: 'Nome de sala ja utilizado'
+                message: error.response.data.error
             });
         }
     }

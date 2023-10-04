@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { NavbarComponent } from '../components/Navbar'
 import { Input } from "../components/Input"
+import { ModalN2 } from "../components/ModalN2"
+import { ModalFracasso } from "../components/ModalFracasso";
 
 import '../style.css'
 
@@ -11,6 +13,9 @@ import { deleteUsuario, getUsuario, updateUsuario } from "../services/usuario-se
 
 export function Perfil(props) {
   const [usuario, setUsuario] = useState([]);
+
+  const [sucessoRota, setSucessoRota] = useState(null)
+  const [erroResultado, setErroResultado] = useState(null)
   const {
     register,
     handleSubmit,
@@ -72,9 +77,15 @@ export function Perfil(props) {
         senhaUsuario: data.senhaUsuario
       });
       await findUsuario();
+      setSucessoRota({
+        message: 'Atualização realizada'
+    })
       setIsUpdated(false)
     } catch (error) {
-      console.error(error);
+      setErroResultado({
+        title:'Bad Request',
+        message: error.response.data.error
+    });
     }
   }
 
@@ -82,6 +93,18 @@ export function Perfil(props) {
     <>
       <NavbarComponent />
       <Container fluid>
+      <ModalFracasso
+                    show={erroResultado}
+                    title={erroResultado?.title}
+                    message={erroResultado?.message}
+                    handleClose={() => setErroResultado(null)}
+        />
+        <ModalN2
+                    show={sucessoRota}
+                    title={sucessoRota?.title}
+                    message={sucessoRota?.message}
+                    handleClose={() => setSucessoRota(null)}
+                />
           <br></br>
           <Row className="justify-content-center align-items-center h-100">
             <Col lg="6" className="mb-4 mb-lg-0 ">

@@ -15,7 +15,7 @@ import { createSala, deleteSala, getSalas, updateSala, getFiltroSalas } from "..
 export function Salas() {
     const [salas, setSalas] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const [capacidade, setCapacidade] = useState("")
     const [erroResultado, setErroResultado] = useState(null)
     const [chaveEstrangeiraErro, setChaveEstrangeiraErro] = useState()
@@ -76,6 +76,11 @@ export function Salas() {
             await createSala(data);
             setIsCreated(false);
             await findSalas();
+            reset({
+                nomeSala: "",
+                capacidadeSala: null,
+                departamentoSala: "",
+            });
             setSucessoRota({
                 message: 'Cadastro realizado com sucesso'
             })

@@ -19,6 +19,14 @@ class UpdateUsuarioController {
                 Number(process.env.SALT)
             );
 
+            const usuarioRestricao = await UsuarioModel.findOne({
+                where:{
+                    email:email
+                }
+            })
+
+            if(usuarioRestricao) return httpHelper.badRequest("Email já utilizado")
+
             const usuarioExists = await UsuarioModel.findByPk(id);
             if (!usuarioExists) return httpHelper.notFound('Usuario não encontrado');
             await UsuarioModel.update({

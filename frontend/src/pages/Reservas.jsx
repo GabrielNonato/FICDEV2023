@@ -17,7 +17,7 @@ export function Reservas() {
     const [reservas, setReservas] = useState([]);
     const [salas, setSalas] = useState([])
     const [isCreated, setIsCreated] = useState(false);
-    const { register, handleSubmit, formState: { errors, isValid } } = useForm({ mode: 'all' });
+    const { register, handleSubmit, reset, formState: { errors, isValid } } = useForm({ mode: 'all' });
     const navigate = useNavigate();
     const [dia, setDia] = useState("")
     const [erroResultado, setErroResultado] = useState(null)
@@ -78,6 +78,11 @@ export function Reservas() {
             await createReserva(data);
             setIsCreated(false);
             await findReservas();
+            reset({
+                nomeResponsavel: "",
+                diaReserva: null,
+
+            });
             setSucessoRota({
                 message: 'Cadastro realizado com sucesso'
             })
